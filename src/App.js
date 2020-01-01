@@ -29,7 +29,7 @@ function App() {
   const onCharClickHandler = (char) => {
     setGuessedLetters([...letters, char, char.toLowerCase()])
 
-    if (filmName.indexOf(char) > -1 || filmName.indexOf(char.toLowerCase()) > -1) setCounter(counter - 1)
+    return filmName.indexOf(char) > -1 || filmName.indexOf(char.toLowerCase()) > -1 ? null : setCounter(counter - 1)
   }
 
   const fetchFilm = async (genre) => {
