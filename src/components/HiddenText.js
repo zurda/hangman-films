@@ -2,13 +2,13 @@ import React from 'react'
 import styled from '@emotion/styled'
 
 const LetterContainer = styled.span`
-  width: 20px;
-  min-height: 32px;
-  max-height: 32px;
+  font-size: 16px;
+  height: 24px;
+  padding: 0 8px;
   display: inline-block;
-  border-bottom: 1px solid #A9E5BB;
+  border-bottom: ${props => props.letter === ' ' ? 'none' : '2px solid black'};
   text-align: center;
-  margin-right: 8px;
+  margin-right: 4px;
 `
 
 
@@ -16,7 +16,7 @@ const LetterContainer = styled.span`
 const HiddenText = ({ filmArr, guessedLetters }) => {
   return (
     <>
-      {filmArr.map((letter, index) => <LetterContainer key={index}>{guessedLetters.indexOf(letter) > -1 ? letter : '?'}</LetterContainer>)}
+      {filmArr.map((letter, index) => <LetterContainer key={index} letter={letter}>{guessedLetters.indexOf(letter) > -1 ? letter : '?'}</LetterContainer>)}
     </>
   )
 }
