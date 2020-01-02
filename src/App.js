@@ -8,6 +8,12 @@ import { allLetters } from './helpers/letters'
 const API_MOVIEDB_KEY = process.env.REACT_APP_MOVIEDB_API_KEY;
 const MAX_ATTEMPTS = 7
 
+const testFilm = str => {
+  const regex = /^[A-Za-z ]+$/
+  return regex.test(str)
+};
+
+
 const getRandomFilm = (arrayLength) => {
   return Math.floor(arrayLength * Math.random())
 }
@@ -34,15 +40,17 @@ function App() {
 
   const fetchFilm = async (genre) => {
     setFilmName('')
-    setGuessedLetters(' ')
+    setGuessedLetters([' '])
     setCounter(MAX_ATTEMPTS)
     const genreId = getGenreId(genre, genres) || { id: 99 }
     const result = await fetch(
       `https://api.themoviedb.org/3/discover/movie?api_key=${API_MOVIEDB_KEY}&language=en-US&with_genres=${genreId.id}&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`
-    ).then((response) => {
-      return response.json();
-    })
-    const filmPosition = getRandomFilm(result.results.length)
+    ).then((response) => response.json())
+    let filmPosition = getRandomFilm(result.results.length)
+    while (!testFilm(result.results[filmPosition].title)) {
+      filmPosition = getRandomFilm(result.results.length)
+    }
+
     setFilmName(result.results[filmPosition].title);
   };
   useEffect(() => {
