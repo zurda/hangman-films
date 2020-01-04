@@ -10,7 +10,7 @@ import { Button, Dropdown } from './components/GameControllers'
 
 const API_MOVIEDB_KEY = process.env.REACT_APP_MOVIEDB_API_KEY;
 const MAX_ATTEMPTS = 7
-const RESULTS_PAGES = 6
+const RESULTS_PAGES = 5
 const EMPTY_FILM = { title: '', poster_path: '' }
 
 function App() {
@@ -62,7 +62,7 @@ function App() {
       <GameBoard>
         <div>
           {genres && genres.length > 0 && <Dropdown title="Choose a genre" options={genres} onClick={() => setFilm(EMPTY_FILM)} onChange={setSelectedGenre} />}
-          <Button onClick={() => fetchFilm(selectedGenre)}>Get film</Button>
+          <Button type="primary" onClick={() => fetchFilm(selectedGenre)}>Hit me!</Button>
         </div>
         {film.title !== '' &&
           <div>
@@ -70,7 +70,7 @@ function App() {
             <LettersTray guessedLetters={letters} onClickHandler={onCharClickHandler} />
             <p>{counter > 0 ? `Guesses left: ${counter}` : null}</p>
             {!isRevealed ?
-              <Button onClick={() => {
+              <Button type="secondary" onClick={() => {
                 setGuessedLetters(allLetters)
                 setRevealed(true)
               }

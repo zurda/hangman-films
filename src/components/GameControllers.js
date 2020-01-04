@@ -4,10 +4,10 @@ import { colours } from '../style/shared'
 import downArrowSvg from '../style/assets/down_arrow.svg'
 
 export const Button = styled.button`
-  color: ${colours.lightGrey};
+  color: ${props => props.type === 'primary' ? colours.lightGrey : colours.darkGrey};
+  background-color: ${props => props.type === 'primary' ? colours.darkPink : colours.turquoise};
   font-weight: bold;
   padding: 8px 16px;
-  background-color: ${colours.darkPink};
   text-align: center;
   -webkit-transition-duration: 0.2s; /* Safari */
   transition-duration: 0.2s;
@@ -16,7 +16,7 @@ export const Button = styled.button`
   margin: 8px 0;
   &:hover {
     background-color: ${colours.darkGrey};
-    color: ${colours.lightPink};
+    color: ${colours.lightGrey};
   }
 `
 

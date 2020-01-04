@@ -1,6 +1,8 @@
 {
   "name": "hangman-project",
   "version": "0.1.0",
+  "author": "Michal Weisman @zurda",
+  "license": "MIT",
   "private": true,
   "homepage": "http://zurda.github.io/hangman-react",
   "dependencies": {
