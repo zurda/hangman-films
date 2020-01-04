@@ -4,46 +4,32 @@ import Header from './components/Header'
 import GameBoard from './components/GameBoard'
 import HiddenText from './components/HiddenText'
 import LettersTray from './components/LettersTray'
-import { allLetters } from './helpers/letters'
+import { allLetters, getRandom, testFilm, getGenreId } from './helpers'
+import fetchGenres from './api/fetchGenres'
 import { Button, Dropdown } from './components/GameControllers'
 
 const API_MOVIEDB_KEY = process.env.REACT_APP_MOVIEDB_API_KEY;
 const MAX_ATTEMPTS = 7
-const RESULTS_PAGES = 5
-
-const testFilm = str => {
-  const regex = /^[A-Za-z ]+$/
-  return regex.test(str)
-};
-
-
-const getRandom = (arrayLength) => {
-  return Math.floor(arrayLength * Math.random())
-}
-
-const getGenreId = (genreName, genres) => {
-  const selectedGenre = genres.filter(genre => genreName === genre.name)
-  return selectedGenre[0]
-}
-
-
+const RESULTS_PAGES = 6
+const EMPTY_FILM = { title: '', poster_path: '' }
 
 function App() {
   const [counter, setCounter] = useState(MAX_ATTEMPTS)
-  const [filmName, setFilmName] = useState("");
+  const [film, setFilm] = useState(EMPTY_FILM);
   const [genres, setGenres] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState('Drama');
   const [letters, setGuessedLetters] = useState([' ']);
+  const [isRevealed, setRevealed] = useState(false)
 
   const onCharClickHandler = (char) => {
     setGuessedLetters([...letters, char, char.toLowerCase()])
-
-    return filmName.indexOf(char) > -1 || filmName.indexOf(char.toLowerCase()) > -1 ? null : setCounter(counter - 1)
+    return film.title.indexOf(char) > -1 || film.title.indexOf(char.toLowerCase()) > -1 ? null : setCounter(counter - 1)
   }
 
   const fetchFilm = async (genre) => {
-    setFilmName('')
+    setFilm(EMPTY_FILM)
     setGuessedLetters([' '])
+    setRevealed(false)
     setCounter(MAX_ATTEMPTS)
     const genreId = getGenreId(genre, genres) || { id: 99 }
     const result = await fetch(
@@ -53,32 +39,36 @@ function App() {
     while (!testFilm(result.results[filmPosition].title)) {
       filmPosition = getRandom(result.results.length)
     }
-
-    setFilmName(result.results[filmPosition].title);
+    setFilm(result.results[filmPosition]);
   };
   useEffect(() => {
-    const fetchGenres = async () => {
-      const result = await fetch(
-        `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_MOVIEDB_KEY}&language=en-US`,
-      ).then((response) => response.json());
-      setGenres(result.genres);
-    };
-    fetchGenres();
+    fetchGenres().then(result => setGenres(result.genres));
   }, []);
   return (
     <>
       <Header appName={"Hangman"} appDescription={'Guess the film'} />
       <GameBoard>
         <div>
-          {genres && genres.length > 0 && <Dropdown title="Choose a genre" options={genres} onClick={() => setFilmName('')} onChange={setSelectedGenre} />}
+          {genres && genres.length > 0 && <Dropdown title="Choose a genre" options={genres} onClick={() => setFilm(EMPTY_FILM)} onChange={setSelectedGenre} />}
           <Button onClick={() => fetchFilm(selectedGenre)}>Get film</Button>
         </div>
-        {filmName !== '' &&
+        {film.title !== '' &&
           <div>
-            <div>Guesses left: {counter}</div>
-            <HiddenText filmArr={filmName.split('')} guessedLetters={letters} />
+            <HiddenText filmArr={film.title.split('')} guessedLetters={letters} />
             <LettersTray guessedLetters={letters} onClickHandler={onCharClickHandler} />
-            <Button onClick={() => setGuessedLetters(allLetters)}>Reveal</Button>
+            <div>Guesses left: {counter}</div>
+            <Button onClick={() => {
+              setGuessedLetters(allLetters)
+              setRevealed(true)
+            }
+            }>Reveal</Button>
+            {isRevealed
+              &&
+              <>
+                < img src={`http://image.tmdb.org/t/p/w185${film.poster_path}`} alt="Film poster" />
+                {film.overview || film.tagline ? <p>{film.overview || film.tagline}</p> : null}
+              </>
+            }
           </div>
         }
       </GameBoard>

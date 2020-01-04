@@ -51,7 +51,6 @@ const Select = styled.select`
   border-radius: 0;
 `
 
-
 export const Dropdown = ({
   onClick,
   onChange,
@@ -61,10 +60,12 @@ export const Dropdown = ({
     <DropdownContainer>
       <Text>{title}</Text>
       <Select onClick={() => onClick('')} onChange={e => onChange(e.target.value)}>
+        <option
+          value={''}
+        />
         {options.map((option, index) => (
           <option
             key={index}
-            selected={option.selected}
             value={option.name}
           >
             {option.name}

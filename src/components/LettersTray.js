@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-import { upprecaseLettersArr } from '../helpers/letters'
+import { upprecaseLettersArr } from '../helpers'
 
 const LettersContainer = styled.div`
   display: flex;
