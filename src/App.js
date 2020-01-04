@@ -26,10 +26,6 @@ function App() {
     return film.title.indexOf(char) > -1 || film.title.indexOf(char.toLowerCase()) > -1 ? null : setCounter(counter - 1)
   }
 
-  const isGameOver = () => {
-    return counter < 1
-  }
-
   const fetchFilm = async (genre) => {
     setFilm(EMPTY_FILM)
     setGuessedLetters([' '])
@@ -45,7 +41,6 @@ function App() {
     }
     setFilm(result.results[filmPosition]);
   };
-  const gameOver = isGameOver()
 
   useEffect(() => {
     fetchGenres().then(result => setGenres(result.genres));
@@ -65,12 +60,11 @@ function App() {
           {genres && genres.length > 0 && <Dropdown title="Choose a genre" options={genres} onClick={() => setFilm(EMPTY_FILM)} onChange={setSelectedGenre} />}
           <Button onClick={() => fetchFilm(selectedGenre)}>Get film</Button>
         </div>
-        {gameOver ? <div>Game over!</div> : null}
         {film.title !== '' &&
           <div>
             <HiddenText filmArr={film.title.split('')} guessedLetters={letters} />
             <LettersTray guessedLetters={letters} onClickHandler={onCharClickHandler} />
-            <div>Guesses left: {counter}</div>
+            <p>{counter > 0 ? `Guesses left: ${counter}` : null}</p>
             {!isRevealed ?
               <Button onClick={() => {
                 setGuessedLetters(allLetters)
@@ -78,7 +72,8 @@ function App() {
               }
               }>Reveal</Button> :
               <>
-                < img src={`http://image.tmdb.org/t/p/w185${film.poster_path}`} alt="Film poster" />
+
+                <img src={`http://image.tmdb.org/t/p/w185${film.poster_path}`} alt="Film poster" />
                 {film.overview || film.tagline ? <p>{film.overview || film.tagline}</p> : null}
               </>
             }
