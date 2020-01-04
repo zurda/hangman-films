@@ -51,10 +51,14 @@ function App() {
       setRevealed(true)
     }
   }, [counter]);
+  useEffect(() => {
+    const remainingLetters = film.title.split('').filter(filmLetter => letters.indexOf(filmLetter) === -1)
+    console.log(remainingLetters)
+    if (film.title !== '' && remainingLetters.length === 0) setRevealed(true)
+  }, [letters]);
   return (
     <>
       <Header appName={"Hangman"} appDescription={'Guess the film'} />
-
       <GameBoard>
         <div>
           {genres && genres.length > 0 && <Dropdown title="Choose a genre" options={genres} onClick={() => setFilm(EMPTY_FILM)} onChange={setSelectedGenre} />}
@@ -72,7 +76,6 @@ function App() {
               }
               }>Reveal</Button> :
               <>
-
                 <img src={`http://image.tmdb.org/t/p/w185${film.poster_path}`} alt="Film poster" />
                 {film.overview || film.tagline ? <p>{film.overview || film.tagline}</p> : null}
               </>
