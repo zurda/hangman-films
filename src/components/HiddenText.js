@@ -13,8 +13,9 @@ const LetterContainer = styled.span`
   
   padding: 0 8px;
   display: inline-block;
-  border-bottom: ${props => props.letter === ' ' ? 'none' : `2px solid ${colours.darkGrey}`};
-  color: ${colours.darkGrey};
+  border-bottom: ${props => props.letter === ' ' ? 'none' : `2px solid ${colours.maastrichtBlue}`};
+  width: 20px;
+  padding: 2px;
   text-align: center;
   margin-right: 4px;
 `

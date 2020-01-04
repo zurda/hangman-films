@@ -1,7 +1,8 @@
 export const colours = {
-  lightPink: '#dc98a4',
-  darkPink: '#c13d50',
-  turquoise: '#5c9d9f',
-  darkGrey: '#35324c',
-  lightGrey: '#c3cad8'
+  iceberg: '#6FC4CC',
+  diamond: '#BCE7FD',
+  pictonBlue: '#2EB3E8',
+  maastrichtBlue: '#001242',
+  lightest: '#e6f6fe',
+  eucaliptus: '#40C9A2'
 }

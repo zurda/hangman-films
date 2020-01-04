@@ -4,8 +4,8 @@ import { colours } from '../style/shared'
 
 const Container = styled.header`
   width: 100%; 
-  background-color: ${colours.darkGrey};
-  color: ${colours.lightGrey};
+  background-color: ${colours.maastrichtBlue};
+  color: ${colours.diamond};
   font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
   padding: 16px 32px;
@@ -17,7 +17,7 @@ margin: 0;
 
 const Description = styled.p`
 margin: 0;
-color: ${colours.lightPink};
+color: ${colours.pictonBlue};
 `
 
 const Header = ({ appName, appDescription }) => (
