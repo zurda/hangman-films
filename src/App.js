@@ -7,6 +7,8 @@ import LettersTray from './components/LettersTray'
 import { allLetters, getRandom, testFilm, getGenreId } from './helpers'
 import fetchGenres from './api/fetchGenres'
 import { Button, Dropdown } from './components/GameControllers'
+import FilmInfo from './components/FilmInfo'
+import Footer from './components/Footer'
 
 const API_MOVIEDB_KEY = process.env.REACT_APP_MOVIEDB_API_KEY;
 const MAX_ATTEMPTS = 7
@@ -24,6 +26,11 @@ function App() {
   const onCharClickHandler = (char) => {
     setGuessedLetters([...letters, char, char.toLowerCase()])
     return film.title.indexOf(char) > -1 || film.title.indexOf(char.toLowerCase()) > -1 ? null : setCounter(counter - 1)
+  }
+
+  const onRevealClickHandler = () => {
+    setGuessedLetters(allLetters)
+    setRevealed(true)
   }
 
   const fetchFilm = async (genre) => {
@@ -55,34 +62,26 @@ function App() {
     const remainingLetters = film.title.split('').filter(filmLetter => letters.indexOf(filmLetter) === -1)
     console.log(remainingLetters)
     if (film.title !== '' && remainingLetters.length === 0) setRevealed(true)
-  }, [letters]);
+  }, [film.title, letters]);
   return (
     <>
       <Header appName={"Hangman"} appDescription={'Guess the film'} />
       <GameBoard>
-        <div>
-          {genres && genres.length > 0 && <Dropdown title="Choose a genre" options={genres} onClick={() => setFilm(EMPTY_FILM)} onChange={setSelectedGenre} />}
-          <Button type="primary" onClick={() => fetchFilm(selectedGenre)}>Hit me!</Button>
-        </div>
+        {genres && genres.length > 0 && <Dropdown title="Choose a genre" options={genres} onClick={() => setFilm(EMPTY_FILM)} onChange={setSelectedGenre} />}
+        <Button type="primary" onClick={() => fetchFilm(selectedGenre)}>Hit me!</Button>
         {film.title !== '' &&
           <div>
             <HiddenText filmArr={film.title.split('')} guessedLetters={letters} />
             <LettersTray guessedLetters={letters} onClickHandler={onCharClickHandler} />
             <p>{counter > 0 ? `Guesses left: ${counter}` : null}</p>
             {!isRevealed ?
-              <Button type="secondary" onClick={() => {
-                setGuessedLetters(allLetters)
-                setRevealed(true)
-              }
-              }>Reveal</Button> :
-              <>
-                <img src={`http://image.tmdb.org/t/p/w185${film.poster_path}`} alt="Film poster" />
-                {film.overview || film.tagline ? <p>{film.overview || film.tagline}</p> : null}
-              </>
+              <Button type="primary" onClick={onRevealClickHandler}>Reveal</Button> :
+              <FilmInfo film={film} />
             }
           </div>
         }
       </GameBoard>
+      <Footer appName="Hangman" />
     </>
   );
 }

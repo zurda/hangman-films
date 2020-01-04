@@ -8,7 +8,7 @@ const Container = styled.header`
   padding: 16px 32px;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; 
   background-color: ${colours.lightGrey};
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 130px);
 `
 
 const GameBoard = ({ children }) => <Container>{children}</Container>
