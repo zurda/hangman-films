@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 import Header from './components/Header'
+import GameBoard from './components/GameBoard'
 import HiddenText from './components/HiddenText'
 import LettersTray from './components/LettersTray'
 import { allLetters } from './helpers/letters'
+import { Button, Dropdown } from './components/GameControllers'
 
 const API_MOVIEDB_KEY = process.env.REACT_APP_MOVIEDB_API_KEY;
 const MAX_ATTEMPTS = 7
@@ -64,25 +66,23 @@ function App() {
     fetchGenres();
   }, []);
   return (
-    <div className="App">
+    <>
       <Header appName={"Hangman"} appDescription={'Guess the film'} />
-      {genres && genres.length > 0 ?
-        <select value={selectedGenre} onClick={() => setFilmName('')} onChange={e => setSelectedGenre(e.target.value)}>
-          <option value={''}>Choose a genre</option>
-          {genres.map(genre => <option key={genre.id} value={genre.name}>{genre.name}</option>)}
-        </select> : null}
-      <button onClick={() => fetchFilm(selectedGenre)}>Get film</button>
-
-      {filmName !== '' &&
+      <GameBoard>
         <div>
-          <div>Guesses left: {counter}</div>
-          <button onClick={() => setGuessedLetters(allLetters)}>Reveal</button>
-          <HiddenText filmArr={filmName.split('')} guessedLetters={letters} />
-          <LettersTray guessedLetters={letters} onClickHandler={onCharClickHandler} />
+          {genres && genres.length > 0 && <Dropdown title="Choose a genre" options={genres} onClick={() => setFilmName('')} onChange={setSelectedGenre} />}
+          <Button onClick={() => fetchFilm(selectedGenre)}>Get film</Button>
         </div>
-      }
-
-    </div >
+        {filmName !== '' &&
+          <div>
+            <div>Guesses left: {counter}</div>
+            <HiddenText filmArr={filmName.split('')} guessedLetters={letters} />
+            <LettersTray guessedLetters={letters} onClickHandler={onCharClickHandler} />
+            <Button onClick={() => setGuessedLetters(allLetters)}>Reveal</Button>
+          </div>
+        }
+      </GameBoard>
+    </>
   );
 }
 

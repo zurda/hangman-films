@@ -1,10 +1,11 @@
 import React from 'react'
 import styled from "@emotion/styled";
+import { colours } from '../style/shared'
 
 const Container = styled.header`
   width: 100%; 
-  background-color: #FCF6B1;
-  color: #E3170A;
+  background-color: ${colours.darkGrey};
+  color: ${colours.lightGrey};
   font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
   padding: 16px 32px;
@@ -16,7 +17,7 @@ margin: 0;
 
 const Description = styled.p`
 margin: 0;
-color: #2D1E2F;
+color: ${colours.lightPink};
 `
 
 const Header = ({ appName, appDescription }) => (

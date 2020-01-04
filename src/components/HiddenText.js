@@ -1,12 +1,14 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { colours } from '../style/shared'
 
 const LetterContainer = styled.span`
   font-size: 16px;
   height: 24px;
   padding: 0 8px;
   display: inline-block;
-  border-bottom: ${props => props.letter === ' ' ? 'none' : '2px solid black'};
+  border-bottom: ${props => props.letter === ' ' ? 'none' : `2px solid ${colours.darkGrey}`};
+  color: ${colours.darkGrey};
   text-align: center;
   margin-right: 4px;
 `
