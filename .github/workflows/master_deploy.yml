@@ -21,8 +21,8 @@ jobs:
         npm run build
         npm run predeploy
     - name: Deploy
-      run:
-        npm run deploy
+      uses:
+        JamesIves/github-pages-deploy-action@releases/v3
       with:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BRANCH: gh-pages
