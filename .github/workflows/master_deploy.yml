@@ -25,7 +25,7 @@ jobs:
         run: "npm install\nnpm run build\nnpm run predeploy\n"
       -
         name: Deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: peaceiris/actions-gh-pages@v2
         env:
           REACT_APP_MOVIEDB_API_KEY: '${{ secrets.REACT_APP_MOVIEDB_API_KEY }}'
         with:
