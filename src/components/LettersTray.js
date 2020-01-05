@@ -15,10 +15,23 @@ const Char = styled.button`
   font-weight: bold;
   margin: 2px;
   width: 10%;
-  background-color: ${props => props.disabled ? 'white' : colours.pictonBlue};
-  color: ${props => props.disabled ? colours.diamond : 'white'};
+  background-color: ${(props) => (props.disabled ? 'white' : colours.pictonBlue)};
+  color: ${(props) => (props.disabled ? colours.diamond : 'white')};
 `
 
-const LettersTray = ({ guessedLetters, onClickHandler }) => <LettersContainer>{upprecaseLettersArr.map((char, i) => <Char onClick={e => onClickHandler(e.target.innerHTML)} key={i} value={char} disabled={guessedLetters.indexOf(char) > -1}>{char}</Char>)}</LettersContainer >
+const LettersTray = ({ guessedLetters, onClickHandler }) => (
+  <LettersContainer>
+    {upprecaseLettersArr.map((char, i) => (
+      <Char
+        onClick={(e) => onClickHandler(e.target.innerHTML)}
+        key={i}
+        value={char}
+        disabled={guessedLetters.indexOf(char) > -1}
+      >
+        {char}
+      </Char>
+    ))}
+  </LettersContainer>
+)
 
 export default LettersTray

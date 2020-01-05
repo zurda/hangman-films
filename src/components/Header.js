@@ -1,9 +1,9 @@
 import React from 'react'
-import styled from "@emotion/styled";
+import styled from '@emotion/styled'
 import { colours } from '../style/shared'
 
 const Container = styled.header`
-  width: 100%; 
+  width: 100%;
   background-color: ${colours.maastrichtBlue};
   color: ${colours.diamond};
   font-weight: bold;
@@ -12,12 +12,12 @@ const Container = styled.header`
 `
 
 const Heading = styled.h1`
-margin: 0;
+  margin: 0;
 `
 
 const Description = styled.p`
-margin: 0;
-color: ${colours.pictonBlue};
+  margin: 0;
+  color: ${colours.pictonBlue};
 `
 
 const Header = ({ appName, appDescription }) => (
@@ -27,4 +27,4 @@ const Header = ({ appName, appDescription }) => (
   </Container>
 )
 
-export default Header 
+export default Header

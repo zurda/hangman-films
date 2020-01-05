@@ -10,17 +10,24 @@ const Container = styled.div`
 `
 
 const LetterContainer = styled.span`
-  
   padding: 0 8px;
   display: inline-block;
-  border-bottom: ${props => props.letter === ' ' ? 'none' : `2px solid ${colours.maastrichtBlue}`};
+  border-bottom: ${(props) =>
+    props.letter === ' ' ? 'none' : `2px solid ${colours.maastrichtBlue}`};
   width: 20px;
   padding: 2px;
   text-align: center;
   margin-right: 4px;
 `
 
-const HiddenText = ({ filmArr, guessedLetters }) => <Container>{filmArr.map((letter, index) => <LetterContainer key={index} letter={letter}>{guessedLetters.indexOf(letter) > -1 ? letter : '?'}</LetterContainer>)}</Container>
-
+const HiddenText = ({ filmArr, guessedLetters }) => (
+  <Container>
+    {filmArr.map((letter, index) => (
+      <LetterContainer key={index} letter={letter}>
+        {guessedLetters.indexOf(letter) > -1 ? letter : '?'}
+      </LetterContainer>
+    ))}
+  </Container>
+)
 
 export default HiddenText

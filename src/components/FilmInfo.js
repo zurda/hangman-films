@@ -8,13 +8,18 @@ const Container = styled.div`
 `
 
 const Info = styled.p`
-margin: 16px 32px;
+  margin: 16px 32px;
 `
 
 const FilmInfo = ({ film }) => (
   <Container>
-    <img src={`http://image.tmdb.org/t/p/w154${film.poster_path}`} alt="Film poster" />
-    {film.overview || film.tagline ? <Info>{film.overview || film.tagline}</Info> : null}
+    <img
+      src={`http://image.tmdb.org/t/p/w154${film.poster_path}`}
+      alt="Film poster"
+    />
+    {film.overview || film.tagline ? (
+      <Info>{film.overview || film.tagline}</Info>
+    ) : null}
   </Container>
 )
 

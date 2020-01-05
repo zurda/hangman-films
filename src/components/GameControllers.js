@@ -1,11 +1,12 @@
 import React from 'react'
-import styled from "@emotion/styled";
+import styled from '@emotion/styled'
 import { colours } from '../style/shared'
 import downArrowSvg from '../style/assets/down_arrow.svg'
 
 export const Button = styled.button`
-  color: ${props => props.type === 'primary' ? 'white' : 'white'};
-  background-color: ${props => props.type === 'primary' ? colours.eucaliptus : colours.iceberg};
+  color: ${(props) => (props.type === 'primary' ? 'white' : 'white')};
+  background-color: ${(props) =>
+    props.type === 'primary' ? colours.eucaliptus : colours.iceberg};
   font-weight: bold;
   padding: 8px 16px;
   text-align: center;
@@ -22,7 +23,7 @@ export const Button = styled.button`
 
 const Text = styled.span`
   width: 200px;
-  `
+`
 
 const DropdownContainer = styled.div`
   display: flex;
@@ -51,27 +52,16 @@ const Select = styled.select`
   border-radius: 0;
 `
 
-export const Dropdown = ({
-  onClick,
-  onChange,
-  title,
-  options,
-}) => (
-    <DropdownContainer>
-      <Text>{title}</Text>
-      <Select onClick={() => onClick('')} onChange={e => onChange(e.target.value)}>
-        <option
-          value={''}
-        />
-        {options.map((option, index) => (
-          <option
-            key={index}
-            value={option.name}
-          >
-            {option.name}
-          </option>
-        ))}
-      </Select>
-    </DropdownContainer>
-  )
-
+export const Dropdown = ({ onClick, onChange, title, options }) => (
+  <DropdownContainer>
+    <Text>{title}</Text>
+    <Select onClick={() => onClick('')} onChange={(e) => onChange(e.target.value)}>
+      <option value={''} />
+      {options.map((option, index) => (
+        <option key={index} value={option.name}>
+          {option.name}
+        </option>
+      ))}
+    </Select>
+  </DropdownContainer>
+)
