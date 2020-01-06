@@ -18,6 +18,10 @@ const LetterContainer = styled.span`
   padding: 2px;
   text-align: center;
   margin-right: 4px;
+  font-size: 20px;
+  @media (min-width: 420px) {
+    font-size: 22px;
+  }
 `
 
 const HiddenText = ({ filmArr, guessedLetters }) => (

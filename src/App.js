@@ -78,7 +78,6 @@ function App() {
       <GameBoard>
         {genres && genres.length > 0 && (
           <Dropdown
-            title="Choose a genre"
             options={genres}
             onClick={() => setFilm(EMPTY_FILM)}
             onChange={setSelectedGenre}
