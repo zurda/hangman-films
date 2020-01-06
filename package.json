@@ -6,6 +6,7 @@
   "private": true,
   "homepage": "http://zurda.github.io/hangman-react",
   "dependencies": {
+    "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0"
@@ -48,7 +49,6 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.17.0",
     "gh-pages": "^2.1.1",
-    "prettier": "^1.19.1",
     "react-emotion": "^10.0.0"
   }
 }
