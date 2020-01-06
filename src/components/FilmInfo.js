@@ -2,18 +2,26 @@ import React from 'react'
 import styled from '@emotion/styled'
 
 const Container = styled.div`
-  width: 100%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media only screen and (min-width: 600px) {
   flex-direction: row;
+  justify-content: space-between;
+}
 `
 
 const Info = styled.p`
   margin: 16px 32px;
 `
 
+const Img = styled.img`
+  width: 154px;
+`
+
 const FilmInfo = ({ film }) => (
   <Container>
-    <img
+    <Img
       src={`http://image.tmdb.org/t/p/w154${film.poster_path}`}
       alt="Film poster"
     />
