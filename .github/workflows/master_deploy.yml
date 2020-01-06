@@ -15,10 +15,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Formatting tests
+    - name: Test Format and Linting
       run: |
         npm install
         npm run format:test
+        npm run lint
     - name: Build
       run: |
         npm install
