@@ -5,10 +5,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media only screen and (min-width: 600px) {
-  flex-direction: row;
-  justify-content: space-between;
-}
+  @media (min-width: 420px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `
 
 const Info = styled.p`
