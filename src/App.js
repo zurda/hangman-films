@@ -6,7 +6,13 @@ import HiddenText from './components/HiddenText'
 import LettersTray from './components/LettersTray'
 import { allLetters, getRandom, testFilm, getGenreId } from './helpers'
 import fetchGenres from './api/fetchGenres'
-import { Button, Dropdown } from './components/GameControllers'
+import {
+  Button,
+  ButtonContainer,
+  RoundButton,
+  FlexResponsive,
+  Dropdown
+} from './components/GameControllers'
 import FilmInfo from './components/FilmInfo'
 import Footer from './components/Footer'
 
@@ -76,16 +82,20 @@ function App() {
     <>
       <Header appName={'Hangman'} appDescription={'Guess the film'} />
       <GameBoard>
-        {genres && genres.length > 0 && (
-          <Dropdown
-            options={genres}
-            onClick={() => setFilm(EMPTY_FILM)}
-            onChange={setSelectedGenre}
-          />
-        )}
-        <Button type="primary" onClick={() => fetchFilm(selectedGenre)}>
-          Hit me!
-        </Button>
+        <FlexResponsive>
+          {genres && genres.length > 0 && (
+            <Dropdown
+              options={genres}
+              onClick={() => setFilm(EMPTY_FILM)}
+              onChange={setSelectedGenre}
+            />
+          )}
+          <ButtonContainer>
+            <Button type="primary" onClick={() => fetchFilm(selectedGenre)}>
+              Hit me!
+            </Button>
+          </ButtonContainer>
+        </FlexResponsive>
         {film.title !== '' && (
           <div>
             <HiddenText filmArr={film.title.split('')} guessedLetters={letters} />
@@ -95,9 +105,9 @@ function App() {
             />
             <p>{counter > 0 ? `Guesses left: ${counter}` : null}</p>
             {!isRevealed ? (
-              <Button type="primary" onClick={onRevealClickHandler}>
+              <RoundButton type="primary" onClick={onRevealClickHandler}>
                 Reveal
-              </Button>
+              </RoundButton>
             ) : (
               <FilmInfo film={film} />
             )}

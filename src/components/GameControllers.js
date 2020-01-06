@@ -14,7 +14,6 @@ export const Button = styled.button`
   transition-duration: 0.2s;
   border: none;
   width: 100%;
-  margin: 8px 0;
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
   border-radius: 2px;
   &:hover {
@@ -23,6 +22,31 @@ export const Button = styled.button`
   }
   @media (min-width: 420px) {
     font-size: 18px;
+  }
+`
+
+export const RoundButton = styled(Button)`
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  align-self: flex-end;
+  margin: 0 auto;
+`
+
+export const ButtonContainer = styled.div`
+  width: 100%;
+  @media (min-width: 420px) {
+    width: 49%;
+  }
+`
+
+export const FlexResponsive = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (min-width: 420px) {
+    flex-direction: row;
+    justify-content: space-between;
   }
 `
 
@@ -35,6 +59,12 @@ const DropdownContainer = styled.div`
   flex-direction: row;
   padding: 0;
   margin: 0;
+  width: 100%;
+  padding-bottom: 8px;
+  @media (min-width: 420px) {
+    width: 49%;
+    padding-bottom: 0;
+  }
 `
 
 const Select = styled.select`
@@ -49,7 +79,6 @@ const Select = styled.select`
   background-position-x: calc(100% - 8px);
   text-align: left;
   padding: 8px;
-  margin-bottom: 8px;
   cursor: pointer;
   width: 100%;
   border: 1px solid black;
