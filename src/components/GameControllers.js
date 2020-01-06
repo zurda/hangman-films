@@ -15,9 +15,14 @@ export const Button = styled.button`
   border: none;
   width: 100%;
   margin: 8px 0;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
   &:hover {
     background-color: ${colours.maastrichtBlue};
     color: ${colours.lightest};
+  }
+  @media (min-width: 420px) {
+    font-size: 18px;
   }
 `
 
@@ -43,20 +48,24 @@ const Select = styled.select`
   background-position-y: 50%;
   background-position-x: calc(100% - 8px);
   text-align: left;
-  padding: 4px 8px;
+  padding: 8px;
   margin-bottom: 8px;
   cursor: pointer;
-  width: calc(100% - 60px);
+  width: 100%;
   border: 1px solid black;
   border: none;
-  border-radius: 0;
+  border-radius: 2px;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  @media (min-width: 420px) {
+    font-size: 18px;
+  }
 `
 
 export const Dropdown = ({ onClick, onChange, title, options }) => (
   <DropdownContainer>
-    <Text>{title}</Text>
+    {title && title.length > 0 && <Text>{title}</Text>}
     <Select onClick={() => onClick('')} onChange={(e) => onChange(e.target.value)}>
-      <option value={''} />
+      <option value={''}>Choose a genre:</option>
       {options.map((option, index) => (
         <option key={index} value={option.name}>
           {option.name}

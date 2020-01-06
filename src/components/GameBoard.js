@@ -8,10 +8,13 @@ const Container = styled.div`
   padding: 16px 32px;
   background-color: ${colours.lightest};
   min-height: calc(100vh - 130px);
+  @media (min-width: 420px) {
+    font-size: 18px;
+  }
 `
 
 const ContentContainer = styled.div`
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
 `
 
