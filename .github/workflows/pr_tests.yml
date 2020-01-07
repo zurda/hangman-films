@@ -1,6 +1,6 @@
-name: MasterDeployCI
+name: PRTests
 on:
-  push:
+  pull_request:
     branches:
       - master
 jobs:
@@ -28,10 +28,3 @@ jobs:
         npm run predeploy
       env:
         REACT_APP_MOVIEDB_API_KEY: '${{ secrets.REACT_APP_MOVIEDB_API_KEY }}'
-    - name: Deploy
-      uses:
-        JamesIves/github-pages-deploy-action@releases/v3
-      with:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: build
