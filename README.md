@@ -1,68 +1,71 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Hangman React 
 
-## Available Scripts
+<strong><a href="https://zurda.github.io/hangman-react/">Here's the project link</a></strong>
 
-In the project directory, you can run:
+<img src="./hangman-react-screen.png" 
+alt="Screen grab of game" width="500" />
 
-### `yarn start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This is my first project for 2020. The main goal of this project was speed: I wanted something I can set up quickly to kick this year off with something fun. 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+I created a hangman game that pulls film genres and film info from the MovieDB api. 
 
-### `yarn test`
+The project was created using `create-react-app`, `emotion`, and `typescript` (although types were a last day addition, and are still a WIP). Also used `prettier`, `gh-pages`, Github Actions, `eslint` which was later on swapped for `tslint`. 
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+### Planning Process
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I started this on January 1, 2020. Here's a list of things I wrote down when planning this project. I find it interesting that the last item on this list was what I started with (genre dropdown):
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- Create the app 
+- Create header, footer
+- Make api call 
+- Fetch one movie to display on screen 
+- Hide movie on screen 
+- Display alphabet 
+- Keep guessed alphabet and make unclickable 
+- Display letters that have been selected 
+- Button to start game 
+- Button to give up and restart game 
+- Display remaining tries 
+- Display game over / game won! 
+- Add play again option 
+- Add poster reveal option 
+- Add linter 
+- Add tests 
+- Add difficulty levels 
+- Allow chossing genre 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+### Things I've learned 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Gained practice in **setting up a project quickly**. One of my goals were to have something I'll feel reasonabely comfortable sharing after **one week** of work.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Tried **Github Actions**: I started with setting up a deployer for master branch, and later split the lint and formatting tests to also run on PRs.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Converted to **Typescript** (day 7): I got to experience the process of converting the project to TS file by file while following error messages. This was a lot easier than expected thanks to VScode (Types are still a WIP - forgive me padre). 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Something that took way too long to figure out: In order to use prettier in Actions the package needs to be installed in the dependencies rather than devDependencies if unning `yarn install`. 
 
-## Learn More
+- Set up two different `.yml` files: one for PRs that runs the lint and format test, and another that runs these tests + deploys. 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Used **Github secrets**. 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- I was really excited to discover a field with the type `number | null` in the api documentation, but soon after discovered that particular field was practically always null (!). This was an important lesson about **data availability, and api documentation** (the short version being: don't get your hopes up before you try it :) )
 
-### Code Splitting
+### Still to do
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+- Types fixes and tweaks
 
-### Analyzing the Bundle Size
+- Add tests (visual, api, interface)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+- Fix bug: when the film name is too long it slides off of screen
 
-### Making a Progressive Web App
+- Explore more things in the api: tv shows, integration with IMDB, integrate youtube for trailers
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+- Ability to peak into a section of the movie poster as a hint 
 
-### Advanced Configuration
+- There are probably other issues, but these are the next priorities
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
 
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+This is it for now. See you on project #2 (I hope)
