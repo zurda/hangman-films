@@ -18,7 +18,7 @@
     "eject": "react-scripts eject",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
-    "lint": "eslint src",
+    "lint": "tslint --project .",
     "format": "prettier --write src/**/*.{js,jsx}",
     "format:test": "prettier --check src/**/*.{js,jsx}"
   },
@@ -43,12 +43,16 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "@types/reach__router": "^1.2.6",
+    "@types/react": "^16.9.17",
+    "@types/react-dom": "^16.9.4",
     "emotion": "^10.0.27",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.9.0",
     "eslint-plugin-prettier": "^3.1.2",
-    "eslint-plugin-react": "^7.17.0",
     "gh-pages": "^2.1.1",
-    "react-emotion": "^10.0.0"
+    "react-emotion": "^10.0.0",
+    "tslint": "^5.20.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^4.1.0",
+    "typescript": "^3.7.4"
   }
 }

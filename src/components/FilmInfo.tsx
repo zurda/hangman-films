@@ -19,7 +19,7 @@ const Img = styled.img`
   width: 154px;
 `
 
-const FilmInfo = ({ film }) => (
+const FilmInfo = ({ film }: any) => (
   <Container>
     <Img
       src={`http://image.tmdb.org/t/p/w154${film.poster_path}`}

@@ -25,11 +25,11 @@ const Char = styled.button`
   }
 `
 
-const LettersTray = ({ guessedLetters, onClickHandler }) => (
+const LettersTray = ({ guessedLetters, onClickHandler }: any) => (
   <LettersContainer>
     {upprecaseLettersArr.map((char, i) => (
       <Char
-        onClick={(e) => onClickHandler(e.target.innerHTML)}
+        onClick={() => onClickHandler(char)}
         key={i}
         value={char}
         disabled={guessedLetters.indexOf(char) > -1}
