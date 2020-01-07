@@ -18,7 +18,9 @@ const ContentContainer = styled.div`
   margin: 0 auto;
 `
 
-const GameBoard = ({ children }) => (
+
+
+const GameBoard = ({ children }: any) => (
   <Container>
     <ContentContainer>{children}</ContentContainer>
   </Container>

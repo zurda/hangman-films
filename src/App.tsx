@@ -25,11 +25,11 @@ function App() {
   const [counter, setCounter] = useState(MAX_ATTEMPTS)
   const [film, setFilm] = useState(EMPTY_FILM)
   const [genres, setGenres] = useState([])
-  const [selectedGenre, setSelectedGenre] = useState('Drama')
+  const [selectedGenre, setSelectedGenre] = useState({ id: 99 })
   const [letters, setGuessedLetters] = useState([' '])
   const [isRevealed, setRevealed] = useState(false)
 
-  const onCharClickHandler = (char) => {
+  const onCharClickHandler = (char: string) => {
     setGuessedLetters([...letters, char, char.toLowerCase()])
     return film.title.indexOf(char) > -1 ||
       film.title.indexOf(char.toLowerCase()) > -1
@@ -42,7 +42,7 @@ function App() {
     setRevealed(true)
   }
 
-  const fetchFilm = async (genre) => {
+  const fetchFilm = async (genre: { id: number }) => {
     setFilm(EMPTY_FILM)
     setGuessedLetters([' '])
     setRevealed(false)
@@ -50,7 +50,7 @@ function App() {
     const genreId = getGenreId(genre, genres) || { id: 99 }
     const result = await fetch(
       `https://api.themoviedb.org/3/discover/movie?api_key=${API_MOVIEDB_KEY}&language=en-US&with_genres=${
-        genreId.id
+      genreId.id
       }&sort_by=popularity.desc&include_adult=false&include_video=false&page=${getRandom(
         RESULTS_PAGES
       ) + 1}`
@@ -75,8 +75,9 @@ function App() {
     const remainingLetters = film.title
       .split('')
       .filter((filmLetter) => letters.indexOf(filmLetter) === -1)
-    console.log(remainingLetters)
-    if (film.title !== '' && remainingLetters.length === 0) setRevealed(true)
+    if (film.title !== '' && remainingLetters.length === 0) {
+      setRevealed(true)
+    }
   }, [film.title, letters])
   return (
     <>
@@ -86,12 +87,13 @@ function App() {
           {genres && genres.length > 0 && (
             <Dropdown
               options={genres}
+              title=""
               onClick={() => setFilm(EMPTY_FILM)}
               onChange={setSelectedGenre}
             />
           )}
           <ButtonContainer>
-            <Button type="primary" onClick={() => fetchFilm(selectedGenre)}>
+            <Button onClick={() => fetchFilm(selectedGenre)}>
               Hit me!
             </Button>
           </ButtonContainer>
@@ -105,16 +107,16 @@ function App() {
             />
             <p>{counter > 0 ? `Guesses left: ${counter}` : null}</p>
             {!isRevealed ? (
-              <RoundButton type="primary" onClick={onRevealClickHandler}>
+              <RoundButton onClick={onRevealClickHandler}>
                 Reveal
               </RoundButton>
             ) : (
-              <FilmInfo film={film} />
-            )}
+                <FilmInfo film={film} />
+              )}
           </div>
         )}
       </GameBoard>
-      <Footer appName="Hangman" />
+      <Footer />
     </>
   )
 }

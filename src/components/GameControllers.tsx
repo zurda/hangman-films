@@ -4,9 +4,8 @@ import { colours } from '../style/shared'
 import downArrowSvg from '../style/assets/down_arrow.svg'
 
 export const Button = styled.button`
-  color: ${(props) => (props.type === 'primary' ? 'white' : 'white')};
-  background-color: ${(props) =>
-    props.type === 'primary' ? colours.eucaliptus : colours.iceberg};
+  color: white;
+  background-color: ${colours.iceberg};
   font-weight: bold;
   padding: 8px 16px;
   text-align: center;
@@ -90,7 +89,18 @@ const Select = styled.select`
   }
 `
 
-export const Dropdown = ({ onClick, onChange, title, options }) => (
+interface IOption {
+  name: string
+}
+
+interface IDropdown {
+  options: IOption[]
+  onClick: any
+  onChange: any
+  title: string
+}
+
+export const Dropdown = ({ onClick, onChange, title, options }: IDropdown) => (
   <DropdownContainer>
     {title && title.length > 0 && <Text>{title}</Text>}
     <Select onClick={() => onClick('')} onChange={(e) => onChange(e.target.value)}>
