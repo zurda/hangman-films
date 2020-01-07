@@ -8,9 +8,10 @@ const LettersContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   margin: 16px auto;
+  font-family: 'Roboto';
 `
 
-const Char = styled.button`
+export const Char = styled.button`
   padding: 8px;
   font-weight: bold;
   margin: 2px;
@@ -25,11 +26,16 @@ const Char = styled.button`
   }
 `
 
-const LettersTray = ({ guessedLetters, onClickHandler }) => (
+interface ILettersTray {
+  guessedLetters: string[]
+  onClickHandler: (char: string) => void
+}
+
+const LettersTray = ({ guessedLetters, onClickHandler }: ILettersTray) => (
   <LettersContainer>
     {upprecaseLettersArr.map((char, i) => (
       <Char
-        onClick={(e) => onClickHandler(e.target.innerHTML)}
+        onClick={() => onClickHandler(char)}
         key={i}
         value={char}
         disabled={guessedLetters.indexOf(char) > -1}

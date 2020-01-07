@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilmInfo component Matches the snapshot 1`] = `
+<div
+  className="css-9s8wn8"
+>
+  <img
+    alt="Film poster"
+    className="css-rh3cin"
+    src="http://image.tmdb.org/t/p/w154sometext.png"
+  />
+  <p
+    className="css-bni6fn"
+  >
+    Some text
+  </p>
+</div>
+`;

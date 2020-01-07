@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PosterHint component Matches the snapshot 1`] = `
+Array [
+  <button
+    className="css-15j8xbs"
+    onClick={[Function]}
+  >
+    Hint
+  </button>,
+  <p
+    className="css-ck8036"
+  >
+    This will cost you two guesses!
+  </p>,
+]
+`;

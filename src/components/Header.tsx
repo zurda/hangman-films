@@ -20,7 +20,12 @@ const Description = styled.p`
   color: ${colours.pictonBlue};
 `
 
-const Header = ({ appName, appDescription }) => (
+interface IHeaderProps {
+  appName: string
+  appDescription: string
+}
+
+const Header = ({ appName, appDescription }: IHeaderProps) => (
   <Container>
     <Heading>{appName}</Heading>
     <Description>{appDescription}</Description>

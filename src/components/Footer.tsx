@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import styled from '@emotion/styled'
 import { colours } from '../style/shared'
 
 const Container = styled.footer`
   width: 100%;
-  color: ${colours.diamond};
+  color: ${colours.maastrichtBlue};
   background-color: ${colours.pictonBlue};
   font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
@@ -19,11 +19,14 @@ const Description = styled.p`
   }
 `
 
-const Footer = () => (
+interface IFooter {
+  children: ReactElement<any>
+}
+
+const Footer = ({ children }: IFooter) => (
   <Container>
     <Description>
-      This project is available on{' '}
-      <a href="https://github.com/zurda/hangman-react">Github</a>
+      {children}
     </Description>
   </Container>
 )

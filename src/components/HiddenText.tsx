@@ -7,9 +7,14 @@ const Container = styled.div`
   flex-direction: row;
   justify-content: center;
   padding: 16px 32px;
+  font-family: 'Roboto';
 `
 
-const LetterContainer = styled.span`
+interface ILetterContainer {
+  letter: string
+}
+
+const LetterContainer = styled.span<ILetterContainer>`
   padding: 0 8px;
   display: inline-block;
   border-bottom: ${(props) =>
@@ -24,7 +29,12 @@ const LetterContainer = styled.span`
   }
 `
 
-const HiddenText = ({ filmArr, guessedLetters }) => (
+interface IFilmArr {
+  filmArr: string[]
+  guessedLetters: string[]
+}
+
+const HiddenText = ({ filmArr, guessedLetters }: IFilmArr) => (
   <Container>
     {filmArr.map((letter, index) => (
       <LetterContainer key={index} letter={letter}>

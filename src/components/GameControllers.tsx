@@ -4,16 +4,15 @@ import { colours } from '../style/shared'
 import downArrowSvg from '../style/assets/down_arrow.svg'
 
 export const Button = styled.button`
-  color: ${(props) => (props.type === 'primary' ? 'white' : 'white')};
-  background-color: ${(props) =>
-    props.type === 'primary' ? colours.eucaliptus : colours.iceberg};
+  color: white;
+  background-color: ${colours.iceberg};
   font-weight: bold;
   padding: 8px 16px;
   text-align: center;
   -webkit-transition-duration: 0.2s; /* Safari */
   transition-duration: 0.2s;
   border: none;
-  width: 100%;
+  width: auto;
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
   border-radius: 2px;
   &:hover {
@@ -22,15 +21,18 @@ export const Button = styled.button`
   }
   @media (min-width: 420px) {
     font-size: 18px;
+    width: auto;
   }
 `
 
 export const RoundButton = styled(Button)`
   border-radius: 50%;
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  min-width: 90px;
+  height: 90px;
   align-self: flex-end;
   margin: 0 auto;
+  }
 `
 
 export const ButtonContainer = styled.div`
@@ -51,12 +53,17 @@ export const FlexResponsive = styled.div`
 `
 
 const Text = styled.span`
-  width: 200px;
+  width: 220px;
+  font-family: 'Roboto';
+  @media (min-width: 420px) {
+    font-size: 18px;
+  }
 `
 
 const DropdownContainer = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   padding: 0;
   margin: 0;
   width: 100%;
@@ -90,7 +97,18 @@ const Select = styled.select`
   }
 `
 
-export const Dropdown = ({ onClick, onChange, title, options }) => (
+interface IOption {
+  name: string
+}
+
+interface IDropdown {
+  options: IOption[]
+  onClick: any
+  onChange: any
+  title?: string
+}
+
+export const Dropdown = ({ onClick, onChange, title, options }: IDropdown) => (
   <DropdownContainer>
     {title && title.length > 0 && <Text>{title}</Text>}
     <Select onClick={() => onClick('')} onChange={(e) => onChange(e.target.value)}>
