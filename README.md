@@ -5,6 +5,19 @@
 <img src="./hangman-react-screen.png" 
 alt="Screen grab of game" width="500" />
 
+## Running locally
+
+To run the project locally: 
+
+1. Clone this repo
+2. `cd` into the project, and run `yarn && yarn start`
+3. You should see the project in `http://localhost:3000/`
+4. In order to view films you'll need to get an api key from [MovieDB](https://www.themoviedb.org/faq/api) (this step shouldn't take more than a few minutes).
+5. Create an `.env` file in your root directory and set your key using this format: `REACT_APP_MOVIEDB_API_KEY=PASTE_YOUR_KEY_HERE`
+6. That's it! You should be in businees.
+
+
+## About this project 
 
 This is my first project for 2020. The main goal of this project was speed: I wanted something I can set up quickly to kick this year off with something fun. 
 
