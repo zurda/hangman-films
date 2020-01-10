@@ -20,8 +20,10 @@ jobs:
         npm install
         npm run format:test
         npm run lint
-    - name: Snapshot testing
-      run: npm test:ci   
+    - name: Snapshot tests
+      run:  |
+        npm install
+        npm run test:ci
     - name: Build
       run: |
         npm install
