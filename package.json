@@ -7,6 +7,7 @@
   "homepage": "http://zurda.github.io/hangman-react",
   "dependencies": {
     "@types/jest": "^24.0.25",
+    "cross-env": "^6.0.3",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -17,6 +18,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:ci": "cross-env CI=true react-scripts test -u",
     "eject": "react-scripts eject",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
