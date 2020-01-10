@@ -6,10 +6,12 @@
   "private": true,
   "homepage": "http://zurda.github.io/hangman-react",
   "dependencies": {
+    "@types/jest": "^24.0.25",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.3.0"
+    "react-scripts": "3.3.0",
+    "react-test-renderer": "^16.12.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -47,7 +49,6 @@
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
     "emotion": "^10.0.27",
-    "eslint-plugin-prettier": "^3.1.2",
     "gh-pages": "^2.1.1",
     "react-emotion": "^10.0.0",
     "tslint": "^5.20.1",
