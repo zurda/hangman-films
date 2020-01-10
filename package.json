@@ -18,7 +18,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:ci": "cross-env CI=true react-scripts test -u",
+    "test:ci": "cross-env CI=true react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
