@@ -1,3 +1,8 @@
+[![open issues](https://img.shields.io/github/issues/zurda/hangman-react.svg)](https://github.com/zurda/hangman-react/issues) [![help wanted issues open](https://img.shields.io/github/issues/zurda/hangman-react/help%20wanted.svg)](https://github.com/zurda/hangman-react/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) <a href="https://twitter.com/zur_da/follow?screen_name=zur_da">
+    <img src="https://img.shields.io/twitter/follow/zur_da.svg?style=social&logo=twitter"
+        alt="follow on Twitter">
+</a>
+
 # Hangman React 
 
 <strong><a href="https://zurda.github.io/hangman-react/">Here's the project link</a></strong>
@@ -79,6 +84,11 @@ I started this on January 1, 2020. Here's a list of things I wrote down when pla
 - Ability to peak into a section of the movie poster as a hint 
 
 - There are probably other issues, but these are the next priorities
+
+
+## Contributions
+
+This project is absolutely accepting pull requests (first-timers welcome!). Feel free to report bugs and suggest features by opening a new issue. Check out the open [![good first issues](https://img.shields.io/github/issues/zurda/hangman-react/good%20first%20issue.svg)](https://github.com/zurda/hangman-react/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first%22%issue)
 
 
 This is it for now. See you on project #2 (I hope)
