@@ -86,7 +86,7 @@ const GameBoard = () => {
       setRevealed(true)
     }
   }, [film.title, letters])
-
+  console.log(film)
   return (
     <Container>
       <ContentContainer>

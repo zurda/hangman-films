@@ -9,7 +9,10 @@ const App = () => (
   <>
     <Header appName={'Hangman'} appDescription={'Guess the film'} />
     <GameBoard />
-    <Footer />
+    <Footer>
+      <span>This project is available on{' '}
+        <a href="https://github.com/zurda/hangman-react">Github</a></span>
+    </Footer>
   </>
 )
 
