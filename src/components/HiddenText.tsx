@@ -7,6 +7,7 @@ const Container = styled.div`
   flex-direction: row;
   justify-content: center;
   padding: 16px 32px;
+  font-family: 'Roboto';
 `
 
 interface ILetterContainer {
@@ -32,7 +33,6 @@ interface IFilmArr {
   filmArr: string[]
   guessedLetters: string[]
 }
-
 const HiddenText = ({ filmArr, guessedLetters }: IFilmArr) => (
   <Container>
     {filmArr.map((letter, index) => (

@@ -12,7 +12,7 @@ export const Button = styled.button`
   -webkit-transition-duration: 0.2s; /* Safari */
   transition-duration: 0.2s;
   border: none;
-  width: 100%;
+  width: auto;
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
   border-radius: 2px;
   &:hover {
@@ -21,13 +21,14 @@ export const Button = styled.button`
   }
   @media (min-width: 420px) {
     font-size: 18px;
+    width: auto;
   }
 `
 
 export const RoundButton = styled(Button)`
   border-radius: 50%;
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   align-self: flex-end;
   margin: 0 auto;
 `
@@ -50,12 +51,17 @@ export const FlexResponsive = styled.div`
 `
 
 const Text = styled.span`
-  width: 200px;
+  width: 220px;
+  font-family: 'Roboto';
+  @media (min-width: 420px) {
+    font-size: 18px;
+  }
 `
 
 const DropdownContainer = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   padding: 0;
   margin: 0;
   width: 100%;

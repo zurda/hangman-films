@@ -5,6 +5,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: 'Roboto';
   @media (min-width: 420px) {
     flex-direction: row;
     justify-content: space-between;

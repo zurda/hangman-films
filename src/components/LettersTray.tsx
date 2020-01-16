@@ -8,9 +8,10 @@ const LettersContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   margin: 16px auto;
+  font-family: 'Roboto';
 `
 
-const Char = styled.button`
+export const Char = styled.button`
   padding: 8px;
   font-weight: bold;
   margin: 2px;

@@ -34,6 +34,13 @@ const ContentContainer = styled.div`
   margin: 0 auto;
 `
 
+const Text = styled.p`
+  font-family: 'Roboto';
+  @media (min-width: 420px) {
+    font-size: 18px;
+  }
+`
+
 const GameBoard = () => {
   const [counter, setCounter] = useState(MAX_ATTEMPTS)
   const [film, setFilm] = useState(EMPTY_FILM)
@@ -105,7 +112,7 @@ const GameBoard = () => {
               guessedLetters={letters}
               onClickHandler={onCharClickHandler}
             />
-            <p>{counter > 0 ? `Guesses left: ${counter}` : null}</p>
+            <Text>{counter > 0 ? `Guesses left: ${counter}` : null}</Text>
             {!isRevealed ? (
               <RoundButton onClick={onRevealClickHandler}>
                 Reveal
