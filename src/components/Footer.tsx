@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
 import { colours } from '../style/shared'
 
@@ -19,11 +19,14 @@ const Description = styled.p`
   }
 `
 
-const Footer = () => (
+interface IProps {
+  children: JSX.Element[] | JSX.Element
+}
+
+const Footer: FunctionComponent<IProps> = ({ children }) => (
   <Container>
     <Description>
-      This project is available on{' '}
-      <a href="https://github.com/zurda/hangman-react">Github</a>
+      {children}
     </Description>
   </Container>
 )

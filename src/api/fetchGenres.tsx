@@ -9,7 +9,12 @@ export const fetchGenres = async () => {
   ).then((response) => response.json())
 }
 
-export const fetchFilm = async (genre: { id: number }, genresList: any[], resetCurrentState: VoidFunction, setNewFilm: any) => {
+interface IGenre {
+  id?: number
+  name?: string
+}
+
+export const fetchFilm = async (genre: IGenre, genresList: IGenre[], resetCurrentState: VoidFunction, setNewFilm: any) => {
   resetCurrentState()
   const genreId = getGenreId(genre, genresList) || { id: 99 }
   const result = await fetch(
