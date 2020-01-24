@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import { colours } from '../style/shared'
 import HiddenText from '../components/HiddenText'
 import LettersTray from '../components/LettersTray'
+import HintContainer from '../components/PosterHint'
 import { allLetters } from '../helpers'
 import { fetchGenres, fetchFilm } from '../api/fetchGenres'
 import {
@@ -47,6 +48,7 @@ const GameBoard = () => {
   const [genres, setGenres] = useState<any[]>([])
   const [selectedGenre, setSelectedGenre] = useState({ id: 99 })
   const [letters, setGuessedLetters] = useState([' '])
+  const [isHinted, setIsHinted] = useState(false)
   const [isRevealed, setRevealed] = useState(false)
 
   const onCharClickHandler = (char: string) => {
@@ -57,15 +59,16 @@ const GameBoard = () => {
       : setCounter(counter - 1)
   }
 
-  const onRevealClickHandler = () => {
-    setGuessedLetters(allLetters)
-    setRevealed(true)
+  const onHintClickHandler = () => {
+    setCounter(counter - 2)
+    setIsHinted(true)
   }
 
   const resetState = () => {
     setFilm(EMPTY_FILM)
     setGuessedLetters([' '])
     setRevealed(false)
+    setIsHinted(false)
     setCounter(MAX_ATTEMPTS)
   }
 
@@ -86,7 +89,6 @@ const GameBoard = () => {
       setRevealed(true)
     }
   }, [film.title, letters])
-  console.log(film)
   return (
     <Container>
       <ContentContainer>
@@ -101,25 +103,28 @@ const GameBoard = () => {
           )}
           <ButtonContainer>
             <Button onClick={() => fetchFilm(selectedGenre, genres, resetState, setFilm)}>
-              Hit me!
+              Get film
             </Button>
           </ButtonContainer>
         </FlexResponsive>
         {film.title !== '' && (
           <div>
             <HiddenText filmArr={film.title.split('')} guessedLetters={letters} />
+            <Text>{counter > 0 ? `Guesses left: ${counter}` : null}</Text>
             <LettersTray
               guessedLetters={letters}
               onClickHandler={onCharClickHandler}
             />
-            <Text>{counter > 0 ? `Guesses left: ${counter}` : null}</Text>
-            {!isRevealed ? (
-              <RoundButton onClick={onRevealClickHandler}>
-                Reveal
+            {!isHinted && counter > 2 &&
+              <>
+                <RoundButton onClick={onHintClickHandler}>
+                  Hint
               </RoundButton>
-            ) : (
-                <FilmInfo film={film} />
-              )}
+                <Text>This will cost you two guesses!</Text>
+              </>
+            }
+            {isHinted && !isRevealed && <HintContainer imgSrc={`http://image.tmdb.org/t/p/w154${film.poster_path}`} />}
+            {isRevealed && <FilmInfo film={film} />}
           </div>
         )}
       </ContentContainer>

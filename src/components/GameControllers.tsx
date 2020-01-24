@@ -28,9 +28,11 @@ export const Button = styled.button`
 export const RoundButton = styled(Button)`
   border-radius: 50%;
   width: 90px;
+  min-width: 90px;
   height: 90px;
   align-self: flex-end;
   margin: 0 auto;
+  }
 `
 
 export const ButtonContainer = styled.div`
