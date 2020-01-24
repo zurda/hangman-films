@@ -4,7 +4,7 @@ import { colours } from '../style/shared'
 
 const Container = styled.footer`
   width: 100%;
-  color: ${colours.diamond};
+  color: ${colours.maastrichtBlue};
   background-color: ${colours.pictonBlue};
   font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
