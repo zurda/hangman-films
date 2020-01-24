@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import { colours } from '../style/shared'
 import HiddenText from '../components/HiddenText'
 import LettersTray from '../components/LettersTray'
+import HintContainer from '../components/PosterHint'
 import { allLetters } from '../helpers'
 import { fetchGenres, fetchFilm } from '../api/fetchGenres'
 import {
@@ -47,6 +48,7 @@ const GameBoard = () => {
   const [genres, setGenres] = useState<any[]>([])
   const [selectedGenre, setSelectedGenre] = useState({ id: 99 })
   const [letters, setGuessedLetters] = useState([' '])
+  const [isHinted, setIsHinted] = useState(false)
   const [isRevealed, setRevealed] = useState(false)
 
   const onCharClickHandler = (char: string) => {
@@ -60,6 +62,11 @@ const GameBoard = () => {
   const onRevealClickHandler = () => {
     setGuessedLetters(allLetters)
     setRevealed(true)
+  }
+
+  const onHintClickHandler = () => {
+    setCounter(counter - 2)
+    setIsHinted(true)
   }
 
   const resetState = () => {
@@ -86,7 +93,6 @@ const GameBoard = () => {
       setRevealed(true)
     }
   }, [film.title, letters])
-  console.log(film)
   return (
     <Container>
       <ContentContainer>
@@ -113,6 +119,14 @@ const GameBoard = () => {
               onClickHandler={onCharClickHandler}
             />
             <Text>{counter > 0 ? `Guesses left: ${counter}` : null}</Text>
+            {!isHinted && counter > 2 &&
+
+              <RoundButton onClick={onHintClickHandler}>
+                Hint
+              </RoundButton>}
+
+
+            {isHinted && !isRevealed && <HintContainer imgSrc={`http://image.tmdb.org/t/p/w154${film.poster_path}`} />}
             {!isRevealed ? (
               <RoundButton onClick={onRevealClickHandler}>
                 Reveal
