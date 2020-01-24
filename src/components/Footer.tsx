@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { ReactElement } from 'react'
 import styled from '@emotion/styled'
 import { colours } from '../style/shared'
 
@@ -19,11 +19,11 @@ const Description = styled.p`
   }
 `
 
-interface IProps {
-  children: JSX.Element[] | JSX.Element
+interface IFooter {
+  children: ReactElement<any>
 }
 
-const Footer: FunctionComponent<IProps> = ({ children }) => (
+const Footer = ({ children }: IFooter) => (
   <Container>
     <Description>
       {children}

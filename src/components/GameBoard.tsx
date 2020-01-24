@@ -59,11 +59,6 @@ const GameBoard = () => {
       : setCounter(counter - 1)
   }
 
-  const onRevealClickHandler = () => {
-    setGuessedLetters(allLetters)
-    setRevealed(true)
-  }
-
   const onHintClickHandler = () => {
     setCounter(counter - 2)
     setIsHinted(true)
@@ -73,6 +68,7 @@ const GameBoard = () => {
     setFilm(EMPTY_FILM)
     setGuessedLetters([' '])
     setRevealed(false)
+    setIsHinted(false)
     setCounter(MAX_ATTEMPTS)
   }
 
@@ -107,33 +103,28 @@ const GameBoard = () => {
           )}
           <ButtonContainer>
             <Button onClick={() => fetchFilm(selectedGenre, genres, resetState, setFilm)}>
-              Hit me!
+              Get film
             </Button>
           </ButtonContainer>
         </FlexResponsive>
         {film.title !== '' && (
           <div>
             <HiddenText filmArr={film.title.split('')} guessedLetters={letters} />
+            <Text>{counter > 0 ? `Guesses left: ${counter}` : null}</Text>
             <LettersTray
               guessedLetters={letters}
               onClickHandler={onCharClickHandler}
             />
-            <Text>{counter > 0 ? `Guesses left: ${counter}` : null}</Text>
             {!isHinted && counter > 2 &&
-
-              <RoundButton onClick={onHintClickHandler}>
-                Hint
-              </RoundButton>}
-
-
-            {isHinted && !isRevealed && <HintContainer imgSrc={`http://image.tmdb.org/t/p/w154${film.poster_path}`} />}
-            {!isRevealed ? (
-              <RoundButton onClick={onRevealClickHandler}>
-                Reveal
+              <>
+                <RoundButton onClick={onHintClickHandler}>
+                  Hint
               </RoundButton>
-            ) : (
-                <FilmInfo film={film} />
-              )}
+                <Text>This will cost you two guesses!</Text>
+              </>
+            }
+            {isHinted && !isRevealed && <HintContainer imgSrc={`http://image.tmdb.org/t/p/w154${film.poster_path}`} />}
+            {isRevealed && <FilmInfo film={film} />}
           </div>
         )}
       </ContentContainer>

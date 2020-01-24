@@ -32,6 +32,7 @@ export const RoundButton = styled(Button)`
   height: 90px;
   align-self: flex-end;
   margin: 0 auto;
+  }
 `
 
 export const ButtonContainer = styled.div`
