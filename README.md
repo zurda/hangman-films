@@ -1,7 +1,10 @@
+![Actions Status](https://github.com/zurda/hangman-react/workflows/PRTests/badge.svg) ![Actions Status](https://github.com/zurda/hangman-react/workflows/MasterDeployCI/badge.svg) ![Actions Status](https://github.com/zurda/hangman-react/workflows/Lighthouse%20audit/badge.svg)
+
 [![open issues](https://img.shields.io/github/issues/zurda/hangman-react.svg)](https://github.com/zurda/hangman-react/issues) [![help wanted issues open](https://img.shields.io/github/issues/zurda/hangman-react/help%20wanted.svg)](https://github.com/zurda/hangman-react/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) <a href="https://twitter.com/zur_da/follow?screen_name=zur_da">
     <img src="https://img.shields.io/twitter/follow/zur_da.svg?style=social&logo=twitter"
         alt="follow on Twitter">
 </a>
+
 
 # Hangman React 
 
