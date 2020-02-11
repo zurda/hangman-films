@@ -4,13 +4,12 @@ import { getGenreId } from '../helpers/index'
 import { colours, Text } from '../style/shared'
 import HiddenText from '../components/HiddenText'
 import LettersTray from '../components/LettersTray'
-import HintContainer from '../components/PosterHint'
+import { PosterHint } from '../components/PosterHint'
 import { allLetters } from '../helpers'
 import { fetchGenres, fetchFilm } from '../api'
 import {
   Button,
   ButtonContainer,
-  RoundButton,
   FlexResponsive,
   Dropdown
 } from '../components/GameControllers'
@@ -110,15 +109,7 @@ const GameBoard = () => {
               guessedLetters={letters}
               onClickHandler={onCharClick}
             />
-            {!isHinted && counter > 2 &&
-              <>
-                <RoundButton onClick={onHintClick}>
-                  Hint
-              </RoundButton>
-                <Text>This will cost you two guesses!</Text>
-              </>
-            }
-            {isHinted && counter > 0 && <HintContainer imgSrc={`http://image.tmdb.org/t/p/w154${film.poster_path}`} />}
+            <PosterHint isHinted={isHinted} onHint={onHintClick} counter={counter} poster={film.poster_path} />
             {counter < 1 && <FilmInfo film={film} />}
           </div>
         )}
