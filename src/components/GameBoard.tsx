@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import styled from '@emotion/styled'
-import { getGenreId } from '../helpers/index'
+
 import { colours, Text } from '../style/shared'
+import { allLetters, getGenreId } from '../helpers'
+import { fetchGenres, fetchFilm } from '../api'
+
 import HiddenText from '../components/HiddenText'
 import LettersTray from '../components/LettersTray'
 import { PosterHint } from '../components/PosterHint'
-import { allLetters } from '../helpers'
-import { fetchGenres, fetchFilm } from '../api'
-import {
-  Button,
-  ButtonContainer,
-  FlexResponsive,
-  Dropdown
-} from '../components/GameControllers'
 import FilmInfo from '../components/FilmInfo'
+import { Button, ButtonContainer, FlexResponsive, Dropdown } from '../components/GameControllers'
 
 const MAX_ATTEMPTS = 7
 const EMPTY_FILM = { title: '', poster_path: '' }
@@ -55,6 +51,12 @@ const GameBoard = () => {
     setCounter(MAX_ATTEMPTS)
   }
 
+  const onGetFilmClick = () => {
+    resetState()
+    const genreId = getGenreId(selectedGenre, genres)
+    fetchFilm(genreId, setFilm)
+  }
+
   useEffect(() => {
     fetchGenres().then((result) => setGenres(result.genres))
   }, [])
@@ -64,9 +66,7 @@ const GameBoard = () => {
     }
   }, [counter])
   useEffect(() => {
-    const remainingLetters = film.title
-      .split('')
-      .filter((filmLetter) => guessedLetters.indexOf(filmLetter) === -1)
+    const remainingLetters = film.title.split('').filter((filmLetter) => guessedLetters.indexOf(filmLetter) === -1)
     if (film.title !== '' && remainingLetters.length === 0) {
       setGuessedLetters(allLetters)
     }
@@ -84,18 +84,11 @@ const GameBoard = () => {
             />
           )}
           <ButtonContainer>
-            <Button onClick={() => {
-              resetState()
-              const genreId = getGenreId(selectedGenre, genres)
-              fetchFilm(genreId, setFilm)
-            }
-            }>
-              Get film
-            </Button>
+            <Button onClick={onGetFilmClick}>Get film</Button>
           </ButtonContainer>
         </FlexResponsive>
         {film.title !== '' && (
-          <div>
+          <>
             <HiddenText filmArr={film.title.split('')} guessedLetters={guessedLetters} />
             <Text>{counter > 0 ? `Guesses left: ${counter}` : null}</Text>
             <LettersTray
@@ -104,7 +97,7 @@ const GameBoard = () => {
             />
             <PosterHint counter={counter} setCounter={setCounter} poster={film.poster_path} />
             {counter < 1 && <FilmInfo film={film} />}
-          </div>
+          </>
         )}
       </ContentContainer>
     </Container>
