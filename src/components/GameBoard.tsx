@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import styled from '@emotion/styled'
-
+import { getGenreId } from '../helpers/index'
 import { colours } from '../style/shared'
 import HiddenText from '../components/HiddenText'
 import LettersTray from '../components/LettersTray'
 import HintContainer from '../components/PosterHint'
 import { allLetters } from '../helpers'
-import { fetchGenres, fetchFilm } from '../api/fetchGenres'
+import { fetchGenres, fetchFilm } from '../api'
 import {
   Button,
   ButtonContainer,
@@ -51,7 +51,7 @@ const GameBoard = () => {
   const [isHinted, setIsHinted] = useState(false)
   const [isRevealed, setRevealed] = useState(false)
 
-  const onCharClickHandler = (char: string) => {
+  const onCharClick = (char: string) => {
     setGuessedLetters([...letters, char, char.toLowerCase()])
     return film.title.indexOf(char) > -1 ||
       film.title.indexOf(char.toLowerCase()) > -1
@@ -59,7 +59,7 @@ const GameBoard = () => {
       : setCounter(counter - 1)
   }
 
-  const onHintClickHandler = () => {
+  const onHintClick = () => {
     setCounter(counter - 2)
     setIsHinted(true)
   }
@@ -102,7 +102,12 @@ const GameBoard = () => {
             />
           )}
           <ButtonContainer>
-            <Button onClick={() => fetchFilm(selectedGenre, genres, resetState, setFilm)}>
+            <Button onClick={() => {
+              resetState()
+              const genreId = getGenreId(selectedGenre, genres) || { id: 99 }
+              fetchFilm(genreId, setFilm)
+            }
+            }>
               Get film
             </Button>
           </ButtonContainer>
@@ -113,11 +118,11 @@ const GameBoard = () => {
             <Text>{counter > 0 ? `Guesses left: ${counter}` : null}</Text>
             <LettersTray
               guessedLetters={letters}
-              onClickHandler={onCharClickHandler}
+              onClickHandler={onCharClick}
             />
             {!isHinted && counter > 2 &&
               <>
-                <RoundButton onClick={onHintClickHandler}>
+                <RoundButton onClick={onHintClick}>
                   Hint
               </RoundButton>
                 <Text>This will cost you two guesses!</Text>

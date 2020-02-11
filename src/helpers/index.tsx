@@ -28,5 +28,5 @@ export const testFilm = (str: string) => {
 
 export const getGenreId = (genreName: any, genres: any) => {
   const selectedGenre = genres.filter((genre: any) => genreName === genre.name)
-  return selectedGenre[0]
+  return selectedGenre[0].id
 }
