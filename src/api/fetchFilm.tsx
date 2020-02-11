@@ -1,7 +1,7 @@
 import { getRandom, testFilm } from '../helpers'
 
 const API_MOVIEDB_KEY = process.env.REACT_APP_MOVIEDB_API_KEY
-const RESULTS_PAGES = 2
+const RESULTS_PAGES = 1
 
 export const fetchFilm = async (genreId: number, setNewFilm: React.Dispatch<React.SetStateAction<{
   title: string;
