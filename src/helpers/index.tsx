@@ -2,7 +2,7 @@ export const upprecaseLettersArr = [...Array(26)].map((q, w) =>
   String.fromCharCode(w + 65)
 )
 
-export const allLetters = [
+export const defaultLetters = [
   ' ',
   "'",
   ':',
@@ -15,6 +15,11 @@ export const allLetters = [
   "7",
   "8",
   "9",
+  "?"
+]
+
+export const allLetters = [
+  ...defaultLetters,
   ...upprecaseLettersArr,
   ...upprecaseLettersArr.map((letter) => letter.toLowerCase())
 ]

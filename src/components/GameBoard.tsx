@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from '@emotion/styled'
 
 import { colours, Text } from '../style/shared'
-import { allLetters, getGenreId } from '../helpers'
+import { allLetters, getGenreId, defaultLetters } from '../helpers'
 import { fetchGenres, fetchFilm } from '../api'
 
 import HiddenText from '../components/HiddenText'
@@ -35,10 +35,10 @@ const GameBoard = () => {
   const [film, setFilm] = useState(EMPTY_FILM)
   const [genres, setGenres] = useState<any[]>([])
   const [selectedGenre, setSelectedGenre] = useState({ id: 99 })
-  const [guessedLetters, setGuessedLetters] = useState<string[]>([''])
+  const [guessedLetters, setGuessedLetters] = useState<string[]>(defaultLetters)
 
   const onCharClick = (char: string) => {
-    setGuessedLetters([...guessedLetters, char, char.toLowerCase()])
+    setGuessedLetters(guessedLetters.concat(char, char.toLowerCase()))
     return film.title.indexOf(char) > -1 ||
       film.title.indexOf(char.toLowerCase()) > -1
       ? null
@@ -47,7 +47,7 @@ const GameBoard = () => {
 
   const resetState = () => {
     setFilm(EMPTY_FILM)
-    setGuessedLetters([''])
+    setGuessedLetters(defaultLetters)
     setCounter(MAX_ATTEMPTS)
   }
 
