@@ -24,7 +24,6 @@ jobs:
       run:  npm run test:ci
     - name: Build
       run: |
-        npm run format:test
         npm run build
         npm run predeploy
       env:
