@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from '@emotion/styled'
 import { getGenreId } from '../helpers/index'
-import { colours } from '../style/shared'
+import { colours, Text } from '../style/shared'
 import HiddenText from '../components/HiddenText'
 import LettersTray from '../components/LettersTray'
 import HintContainer from '../components/PosterHint'
@@ -35,13 +35,6 @@ const ContentContainer = styled.div`
   margin: 0 auto;
 `
 
-const Text = styled.p`
-  font-family: 'Roboto';
-  @media (min-width: 420px) {
-    font-size: 18px;
-  }
-`
-
 const GameBoard = () => {
   const [counter, setCounter] = useState(MAX_ATTEMPTS)
   const [film, setFilm] = useState(EMPTY_FILM)
@@ -49,7 +42,6 @@ const GameBoard = () => {
   const [selectedGenre, setSelectedGenre] = useState({ id: 99 })
   const [letters, setGuessedLetters] = useState([' '])
   const [isHinted, setIsHinted] = useState(false)
-  const [isRevealed, setRevealed] = useState(false)
 
   const onCharClick = (char: string) => {
     setGuessedLetters([...letters, char, char.toLowerCase()])
@@ -67,7 +59,6 @@ const GameBoard = () => {
   const resetState = () => {
     setFilm(EMPTY_FILM)
     setGuessedLetters([' '])
-    setRevealed(false)
     setIsHinted(false)
     setCounter(MAX_ATTEMPTS)
   }
@@ -78,7 +69,6 @@ const GameBoard = () => {
   useEffect(() => {
     if (counter < 1) {
       setGuessedLetters(allLetters)
-      setRevealed(true)
     }
   }, [counter])
   useEffect(() => {
@@ -86,7 +76,7 @@ const GameBoard = () => {
       .split('')
       .filter((filmLetter) => letters.indexOf(filmLetter) === -1)
     if (film.title !== '' && remainingLetters.length === 0) {
-      setRevealed(true)
+      setGuessedLetters(allLetters)
     }
   }, [film.title, letters])
   return (
@@ -128,8 +118,8 @@ const GameBoard = () => {
                 <Text>This will cost you two guesses!</Text>
               </>
             }
-            {isHinted && !isRevealed && <HintContainer imgSrc={`http://image.tmdb.org/t/p/w154${film.poster_path}`} />}
-            {isRevealed && <FilmInfo film={film} />}
+            {isHinted && counter > 0 && <HintContainer imgSrc={`http://image.tmdb.org/t/p/w154${film.poster_path}`} />}
+            {counter < 1 && <FilmInfo film={film} />}
           </div>
         )}
       </ContentContainer>
