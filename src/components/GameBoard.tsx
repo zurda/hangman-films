@@ -38,7 +38,7 @@ const GameBoard = () => {
   const [guessedLetters, setGuessedLetters] = useState<string[]>(defaultLetters)
 
   const onCharClick = (char: string) => {
-    setGuessedLetters(guessedLetters.concat(char, char.toLowerCase()))
+    setGuessedLetters([...guessedLetters, char, char.toLowerCase()])
     return film.title.indexOf(char) > -1 ||
       film.title.indexOf(char.toLowerCase()) > -1
       ? null
