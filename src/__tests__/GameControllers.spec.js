@@ -3,8 +3,8 @@ import { create } from 'react-test-renderer'
 import { Button, RoundButton, Dropdown } from '../components/GameControllers'
 
 const options = [{ name: 'First option' }, { name: 'second option' }]
-const onClick = () => {}
-const onChange = () => {}
+const onClick = () => console.log()
+const onChange = () => console.log()
 
 describe('GameControllers component', () => {
   test('RoundButton matches the snapshot', () => {
