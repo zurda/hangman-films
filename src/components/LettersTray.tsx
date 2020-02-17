@@ -26,7 +26,12 @@ export const Char = styled.button`
   }
 `
 
-const LettersTray = ({ guessedLetters, onClickHandler }: any) => (
+interface ILettersTray {
+  guessedLetters: string[]
+  onClickHandler: (char: string) => void
+}
+
+const LettersTray = ({ guessedLetters, onClickHandler }: ILettersTray) => (
   <LettersContainer>
     {upprecaseLettersArr.map((char, i) => (
       <Char

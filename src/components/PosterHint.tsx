@@ -20,7 +20,7 @@ interface IHint {
   setCounter: (n: number) => void
 }
 
-export const PosterHint = ({ counter, poster, setCounter }: IHint) => {
+const PosterHint = ({ counter, poster, setCounter }: IHint) => {
   const [isHinted, setIsHinted] = useState<boolean>(false)
 
   const onHintClick = () => {
@@ -42,3 +42,4 @@ export const PosterHint = ({ counter, poster, setCounter }: IHint) => {
   )
 }
 
+export default PosterHint

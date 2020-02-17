@@ -105,7 +105,7 @@ interface IDropdown {
   options: IOption[]
   onClick: any
   onChange: any
-  title: string
+  title?: string
 }
 
 export const Dropdown = ({ onClick, onChange, title, options }: IDropdown) => (

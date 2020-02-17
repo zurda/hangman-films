@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LettersTray component Matches the snapshot 1`] = `
+<div
+  className="css-87q7qv"
+>
+  <span
+    className="css-h5d4jr"
+  >
+    ?
+  </span>
+  <span
+    className="css-h5d4jr"
+  >
+    ?
+  </span>
+  <span
+    className="css-h5d4jr"
+  >
+    ?
+  </span>
+  <span
+    className="css-h5d4jr"
+  >
+    ?
+  </span>
+  <span
+    className="css-1ep591g"
+  >
+     
+  </span>
+  <span
+    className="css-h5d4jr"
+  >
+    ?
+  </span>
+  <span
+    className="css-h5d4jr"
+  >
+    ?
+  </span>
+  <span
+    className="css-h5d4jr"
+  >
+    ?
+  </span>
+  <span
+    className="css-h5d4jr"
+  >
+    ?
+  </span>
+</div>
+`;

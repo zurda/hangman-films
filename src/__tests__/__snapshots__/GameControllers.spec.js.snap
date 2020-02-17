@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GameControllers component Button matches the snapshot 1`] = `
+<button
+  className="css-14nymm2"
+>
+  Button name
+</button>
+`;
+
+exports[`GameControllers component Dropdown matches the snapshot 1`] = `
+<div
+  className="css-1t4fj7x"
+>
+  <select
+    className="css-zjhfov"
+    onChange={[Function]}
+    onClick={[Function]}
+  >
+    <option
+      value=""
+    >
+      Choose a genre:
+    </option>
+    <option
+      value="First option"
+    >
+      First option
+    </option>
+    <option
+      value="second option"
+    >
+      second option
+    </option>
+  </select>
+</div>
+`;
+
+exports[`GameControllers component RoundButton matches the snapshot 1`] = `
+<button
+  className="css-15j8xbs"
+>
+  Button name
+</button>
+`;
