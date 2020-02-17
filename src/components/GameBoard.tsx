@@ -7,7 +7,7 @@ import { fetchGenres, fetchFilm } from '../api'
 
 import HiddenText from '../components/HiddenText'
 import LettersTray from '../components/LettersTray'
-import { PosterHint } from '../components/PosterHint'
+import PosterHint from '../components/PosterHint'
 import FilmInfo from '../components/FilmInfo'
 import { Button, ButtonContainer, FlexResponsive, Dropdown } from '../components/GameControllers'
 

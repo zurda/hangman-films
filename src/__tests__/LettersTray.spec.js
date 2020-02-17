@@ -9,7 +9,7 @@ describe('LettersTray component', () => {
     const lettersTray = create(
       <LettersTray
         guessedLetters={guessedLetters}
-        onClickHandler={(char = 'd') => {}}
+        onClickHandler={(char = 'd') => console.log()}
       />
     )
     expect(lettersTray.toJSON()).toMatchSnapshot()
