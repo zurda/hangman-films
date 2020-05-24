@@ -64,13 +64,11 @@ const GameBoard = () => {
     if (counter < 1) {
       setGuessedLetters(allLetters)
     }
-  }, [counter])
-  useEffect(() => {
     const remainingLetters = film.title.split('').filter((filmLetter) => guessedLetters.indexOf(filmLetter) === -1)
     if (film.title !== '' && remainingLetters.length === 0) {
       setGuessedLetters(allLetters)
     }
-  }, [film.title, guessedLetters])
+  }, [film.title, guessedLetters, counter])
   return (
     <Container>
       <ContentContainer>
