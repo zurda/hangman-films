@@ -41,7 +41,7 @@ const GameBoard = () => {
 
   const updateCounter = (amount: number) => {
     if (counter + amount < 1) {
-      const newPosterOverlay = posterOverlay.map(_ => false);
+      const newPosterOverlay = posterOverlay.map(_ => false)
       setPosterOverlay(newPosterOverlay);
     }
     setCounter(counter + amount)
@@ -59,6 +59,9 @@ const GameBoard = () => {
     setFilm(EMPTY_FILM)
     setGuessedLetters(defaultLetters)
     setCounter(MAX_ATTEMPTS)
+
+    const flushedOverlay = posterOverlay.map(() => true)
+    setPosterOverlay(flushedOverlay)
   }
 
   const onGetFilmClick = () => {
@@ -138,7 +141,7 @@ const GameBoard = () => {
                   <PosterOverlay key={`Overlay-${index}`} active={!status} />
                 ))}
 
-                {hintCounter < 1 && counter > 0 && (
+                {counter > 0 && hintCounter < 1 && (
                   <HintButton type="button" onClick={onHintClick}>
                     <h4>HINT</h4>
                     <p>This will cost you two guesses!</p>
