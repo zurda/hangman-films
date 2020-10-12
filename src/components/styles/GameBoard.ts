@@ -40,6 +40,7 @@ export const Text = styled.p`
 
   svg{
     margin-left: 8px;
+    color: ${(props) => props.theme.colors.dark};
   }
 `
 
