@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 
 import { allLetters, getGenreId, defaultLetters } from '../helpers'
 import { fetchGenres, fetchFilm } from '../api'
 
-
 import HiddenText from '../components/HiddenText'
 import LettersTray from '../components/LettersTray'
-import PosterHint from '../components/PosterHint'
-import FilmInfo from '../components/FilmInfo'
 import { Dropdown } from '../components/GameControllers'
+
+import { FaHeart } from 'react-icons/fa';
 
 import {
   Container,
@@ -18,12 +17,16 @@ import {
   ButtonContainer,
   HiddenTextContainer,
   LettersTrayContainer,
-  PosterContainer,
+  FilmContainer,
+  ImageContainer,
+  HintButton,
+  FilmInfo,
+  PosterOverlay,
   Text
 } from './styles/GameBoard'
 
 const MAX_ATTEMPTS = 7
-const EMPTY_FILM = { title: '', poster_path: '' }
+const EMPTY_FILM = { title: '', poster_path: '', overview: '', tagline: '' }
 
 const GameBoard = () => {
   const [counter, setCounter] = useState(MAX_ATTEMPTS)
@@ -31,13 +34,25 @@ const GameBoard = () => {
   const [genres, setGenres] = useState<any[]>([])
   const [selectedGenre, setSelectedGenre] = useState({ id: 99 })
   const [guessedLetters, setGuessedLetters] = useState<string[]>(defaultLetters)
+  const [hintCounter, setHintCounter] = useState(0)
+  const [posterOverlay, setPosterOverlay] = useState(
+    Array.from({ length: 28 }, () => true)
+  )
+
+  const updateCounter = (amount: number) => {
+    if (counter + amount < 1) {
+      const newPosterOverlay = posterOverlay.map(_ => false);
+      setPosterOverlay(newPosterOverlay);
+    }
+    setCounter(counter + amount)
+  }
 
   const onCharClick = (char: string) => {
     setGuessedLetters([...guessedLetters, char, char.toLowerCase()])
     return film.title.indexOf(char) > -1 ||
       film.title.indexOf(char.toLowerCase()) > -1
       ? null
-      : setCounter(counter - 1)
+      : updateCounter(-1)
   }
 
   const resetState = () => {
@@ -51,6 +66,21 @@ const GameBoard = () => {
     const genreId = getGenreId(selectedGenre, genres)
     fetchFilm(genreId, setFilm)
   }
+
+  const onHintClick = () => {
+    updateCounter(-2)
+
+    let newPosterOverlay = posterOverlay
+    newPosterOverlay[0] = false
+
+    setHintCounter(hintCounter + 1)
+
+    setPosterOverlay(newPosterOverlay)
+  }
+
+  const hearts = useMemo(() => {
+    return Array.from({ length: counter }, (_, index) => ({ id: `Heart-${index}` }))
+  }, [counter])
 
   useEffect(() => {
     fetchGenres().then((result) => setGenres(result.genres))
@@ -87,17 +117,44 @@ const GameBoard = () => {
             </HiddenTextContainer>
 
             <LettersTrayContainer>
-              <Text>{counter > 0 ? `Guesses left: ${counter}` : null}</Text>
+              <Text>{counter > 0 && (
+                <>
+                  Guesses left:
+                  {hearts.map(item => (
+                  <FaHeart key={item.id} />
+                ))}
+                </>
+              )}
+              </Text>
               <LettersTray
                 guessedLetters={guessedLetters}
                 onClickHandler={onCharClick}
               />
             </LettersTrayContainer>
 
-            <PosterContainer>
-              <PosterHint counter={counter} setCounter={setCounter} poster={film.poster_path} />
-              {counter < 1 && <FilmInfo film={film} />}
-            </PosterContainer>
+            <FilmContainer>
+              <ImageContainer posterImage={film.poster_path}>
+                {posterOverlay.map((status, index) => (
+                  <PosterOverlay key={`Overlay-${index}`} active={!status} />
+                ))}
+
+                {hintCounter < 1 && counter > 0 && (
+                  <HintButton type="button" onClick={onHintClick}>
+                    <h4>HINT</h4>
+                    <p>This will cost you two guesses!</p>
+                  </HintButton>
+                )}
+              </ImageContainer>
+
+              {counter < 1 && (
+                <FilmInfo>
+                  <h3>{film.title}</h3>
+                  {film.overview || film.tagline ? (
+                    <p>{film.overview || film.tagline}</p>
+                  ) : null}
+                </FilmInfo>
+              )}
+            </FilmContainer>
           </>
         )}
       </ContentContainer>

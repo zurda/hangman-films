@@ -16,7 +16,7 @@ export const Char = styled.button`
   border-radius: 8px;
   font-weight: 700;
   width: 100%;
-  color: ${(props) => (props.disabled ? 'red' : 'white')};
+  color: #fff;
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
   border: 0;
   @media (min-width: 420px) {

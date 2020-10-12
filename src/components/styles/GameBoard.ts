@@ -1,5 +1,13 @@
 import styled from 'styled-components';
 
+interface ImageContainerProps {
+  posterImage: string;
+}
+
+interface PosterOverlayProps {
+  active?: boolean;
+}
+
 export const Container = styled.div`
   width: 100%;
   color: ${(props) => props.theme.colors.text};
@@ -29,6 +37,10 @@ export const GenreCard = styled.div`
 
 export const Text = styled.p`
   font-size: 18px;
+
+  svg{
+    margin-left: 8px;
+  }
 `
 
 export const Button = styled.button`
@@ -87,11 +99,68 @@ export const LettersTrayContainer = styled.div`
   padding: 16px 24px;
 `;
 
-export const PosterContainer = styled.div`
+export const FilmContainer = styled.div`
   background-color: #FFF;
   border-radius: 8px;
 
   margin-top: 16px;
 
-  padding: 16px 24px;
+  padding: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+`;
+
+export const ImageContainer = styled.div<ImageContainerProps>`
+  background: url(${(props) => `http://image.tmdb.org/t/p/w154${props.posterImage}`});
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 250px;
+  height: 345px;
+
+  border-radius: 8px;
+  overflow: hidden;
+
+  position: relative;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+`
+
+export const PosterOverlay = styled.div<PosterOverlayProps>`
+  background-color: ${(props) => props.active ? 'transparent' : props.theme.colors.plain};
+`
+
+export const HintButton = styled.button`
+  position: absolute;
+
+  bottom: 0;
+
+  padding: 8px;
+
+  background-color: ${(props) => props.theme.colors.dark};
+  color: #fff;
+  border: 0;
+
+  width: 100%;
+
+  h4 {
+    font-size: 20px;
+  }
+`;
+
+export const FilmInfo = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  h3 {
+    margin-bottom: 16px;
+  }
+
+  margin-left: 16px;
 `;
