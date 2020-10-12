@@ -6,12 +6,14 @@
   "private": true,
   "homepage": "http://zurda.github.io/hangman-react",
   "dependencies": {
+    "@types/styled-components": "^5.1.4",
     "cross-env": "^6.0.3",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0",
-    "react-test-renderer": "^16.12.0"
+    "react-test-renderer": "^16.12.0",
+    "styled-components": "^5.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,24 +1,5 @@
 import React from 'react'
-import styled from '@emotion/styled'
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: 'Roboto';
-  @media (min-width: 420px) {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-`
-
-const Info = styled.p`
-  margin: 16px 32px;
-`
-
-const Img = styled.img`
-  width: 154px;
-`
+import { Container, Img, Info } from './styles/FilmInfo';
 
 const FilmInfo = ({ film }: any) => (
   <Container>

@@ -1,24 +1,5 @@
 import React from 'react'
-import styled from '@emotion/styled'
-import { colours } from '../style/shared'
-
-const Container = styled.header`
-  width: 100%;
-  background-color: ${colours.maastrichtBlue};
-  color: ${colours.diamond};
-  font-weight: bold;
-  font-family: 'Courier New', Courier, monospace;
-  padding: 16px 32px;
-`
-
-const Heading = styled.h1`
-  margin: 0;
-`
-
-const Description = styled.p`
-  margin: 0;
-  color: ${colours.pictonBlue};
-`
+import { Container, Title } from './styles/Header';
 
 interface IHeaderProps {
   appName: string
@@ -27,8 +8,10 @@ interface IHeaderProps {
 
 const Header = ({ appName, appDescription }: IHeaderProps) => (
   <Container>
-    <Heading>{appName}</Heading>
-    <Description>{appDescription}</Description>
+    <Title>
+      <h1>{appName}</h1>
+      <h2>{appDescription}</h2>
+    </Title>
   </Container>
 )
 
