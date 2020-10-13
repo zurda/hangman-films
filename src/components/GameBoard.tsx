@@ -42,7 +42,7 @@ const GameBoard = () => {
   const updateCounter = (amount: number) => {
     if (counter + amount < 1) {
       const newPosterOverlay = posterOverlay.map(_ => false)
-      setPosterOverlay(newPosterOverlay);
+      setPosterOverlay(newPosterOverlay)
     }
     setCounter(counter + amount)
   }
@@ -59,6 +59,7 @@ const GameBoard = () => {
     setFilm(EMPTY_FILM)
     setGuessedLetters(defaultLetters)
     setCounter(MAX_ATTEMPTS)
+    setHintCounter(0)
 
     const flushedOverlay = posterOverlay.map(() => true)
     setPosterOverlay(flushedOverlay)
