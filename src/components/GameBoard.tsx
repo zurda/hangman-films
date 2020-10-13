@@ -1,34 +1,32 @@
-import React, { useState, useEffect } from 'react'
-import styled from '@emotion/styled'
+import React, { useState, useEffect, useMemo } from 'react'
 
-import { colours, Text } from '../style/shared'
 import { allLetters, getGenreId, defaultLetters } from '../helpers'
 import { fetchGenres, fetchFilm } from '../api'
 
 import HiddenText from '../components/HiddenText'
 import LettersTray from '../components/LettersTray'
-import PosterHint from '../components/PosterHint'
-import FilmInfo from '../components/FilmInfo'
-import { Button, ButtonContainer, FlexResponsive, Dropdown } from '../components/GameControllers'
+import { Dropdown } from '../components/GameControllers'
+
+import { FaHeart } from 'react-icons/fa';
+
+import {
+  Container,
+  ContentContainer,
+  GenreCard,
+  Button,
+  ButtonContainer,
+  HiddenTextContainer,
+  LettersTrayContainer,
+  FilmContainer,
+  ImageContainer,
+  HintButton,
+  FilmInfo,
+  PosterOverlay,
+  Text
+} from './styles/GameBoard'
 
 const MAX_ATTEMPTS = 7
-const EMPTY_FILM = { title: '', poster_path: '' }
-
-const Container = styled.div`
-  width: 100%;
-  color: ${colours.maastrichtBlue};
-  padding: 16px 32px;
-  background-color: ${colours.lightest};
-  min-height: calc(100vh - 130px);
-  @media (min-width: 420px) {
-    font-size: 18px;
-  }
-`
-
-const ContentContainer = styled.div`
-  max-width: 800px;
-  margin: 0 auto;
-`
+const EMPTY_FILM = { title: '', poster_path: '', overview: '', tagline: '' }
 
 const GameBoard = () => {
   const [counter, setCounter] = useState(MAX_ATTEMPTS)
@@ -36,19 +34,35 @@ const GameBoard = () => {
   const [genres, setGenres] = useState<any[]>([])
   const [selectedGenre, setSelectedGenre] = useState({ id: 99 })
   const [guessedLetters, setGuessedLetters] = useState<string[]>(defaultLetters)
+  const [hintCounter, setHintCounter] = useState(0)
+  const [posterOverlay, setPosterOverlay] = useState(
+    Array.from({ length: 28 }, () => true)
+  )
+
+  const updateCounter = (amount: number) => {
+    if (counter + amount < 1) {
+      const newPosterOverlay = posterOverlay.map(_ => false)
+      setPosterOverlay(newPosterOverlay)
+    }
+    setCounter(counter + amount)
+  }
 
   const onCharClick = (char: string) => {
     setGuessedLetters([...guessedLetters, char, char.toLowerCase()])
     return film.title.indexOf(char) > -1 ||
       film.title.indexOf(char.toLowerCase()) > -1
       ? null
-      : setCounter(counter - 1)
+      : updateCounter(-1)
   }
 
   const resetState = () => {
     setFilm(EMPTY_FILM)
     setGuessedLetters(defaultLetters)
     setCounter(MAX_ATTEMPTS)
+    setHintCounter(0)
+
+    const flushedOverlay = posterOverlay.map(() => true)
+    setPosterOverlay(flushedOverlay)
   }
 
   const onGetFilmClick = () => {
@@ -56,6 +70,21 @@ const GameBoard = () => {
     const genreId = getGenreId(selectedGenre, genres)
     fetchFilm(genreId, setFilm)
   }
+
+  const onHintClick = () => {
+    updateCounter(-2)
+
+    const newPosterOverlay = posterOverlay
+    newPosterOverlay[0] = false
+
+    setHintCounter(hintCounter + 1)
+
+    setPosterOverlay(newPosterOverlay)
+  }
+
+  const hearts = useMemo(() => {
+    return Array.from({ length: counter }, (_, index) => ({ id: `Heart-${index}` }))
+  }, [counter])
 
   useEffect(() => {
     fetchGenres().then((result) => setGenres(result.genres))
@@ -72,7 +101,7 @@ const GameBoard = () => {
   return (
     <Container>
       <ContentContainer>
-        <FlexResponsive>
+        <GenreCard>
           {genres && genres.length > 0 && (
             <Dropdown
               options={genres}
@@ -84,17 +113,52 @@ const GameBoard = () => {
           <ButtonContainer>
             <Button onClick={onGetFilmClick}>Get film</Button>
           </ButtonContainer>
-        </FlexResponsive>
+        </GenreCard>
         {film.title !== '' && (
           <>
-            <HiddenText filmArr={film.title.split('')} guessedLetters={guessedLetters} />
-            <Text>{counter > 0 ? `Guesses left: ${counter}` : null}</Text>
-            <LettersTray
-              guessedLetters={guessedLetters}
-              onClickHandler={onCharClick}
-            />
-            <PosterHint counter={counter} setCounter={setCounter} poster={film.poster_path} />
-            {counter < 1 && <FilmInfo film={film} />}
+            <HiddenTextContainer>
+              <HiddenText filmArr={film.title.split('')} guessedLetters={guessedLetters} />
+            </HiddenTextContainer>
+
+            <LettersTrayContainer>
+              <Text>{counter > 0 && (
+                <>
+                  Guesses left:
+                  {hearts.map(item => (
+                  <FaHeart key={item.id} />
+                ))}
+                </>
+              )}
+              </Text>
+              <LettersTray
+                guessedLetters={guessedLetters}
+                onClickHandler={onCharClick}
+              />
+            </LettersTrayContainer>
+
+            <FilmContainer>
+              <ImageContainer posterImage={film.poster_path}>
+                {posterOverlay.map((status, index) => (
+                  <PosterOverlay key={`Overlay-${index}`} active={!status} />
+                ))}
+
+                {counter > 0 && hintCounter < 1 && (
+                  <HintButton type="button" onClick={onHintClick}>
+                    <h4>HINT</h4>
+                    <p>This will cost you two guesses!</p>
+                  </HintButton>
+                )}
+              </ImageContainer>
+
+              {counter < 1 && (
+                <FilmInfo>
+                  <h3>{film.title}</h3>
+                  {film.overview || film.tagline ? (
+                    <p>{film.overview || film.tagline}</p>
+                  ) : null}
+                </FilmInfo>
+              )}
+            </FilmContainer>
           </>
         )}
       </ContentContainer>

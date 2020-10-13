@@ -1,33 +1,5 @@
 import React from 'react'
-import styled from '@emotion/styled'
-import { colours } from '../style/shared'
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  padding: 16px 32px;
-  font-family: 'Roboto';
-`
-
-interface ILetterContainer {
-  letter: string
-}
-
-const LetterContainer = styled.span<ILetterContainer>`
-  padding: 0 8px;
-  display: inline-block;
-  border-bottom: ${(props) =>
-    props.letter === ' ' ? 'none' : `2px solid ${colours.maastrichtBlue}`};
-  width: 20px;
-  padding: 2px;
-  text-align: center;
-  margin-right: 4px;
-  font-size: 20px;
-  @media (min-width: 420px) {
-    font-size: 22px;
-  }
-`
+import { Container, LetterContainer } from './styles/HiddenText';
 
 interface IFilmArr {
   filmArr: string[]
