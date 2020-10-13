@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react'
 
-import { allLetters, getGenreId, defaultLetters } from '../helpers'
+import { allLetters, getGenreId, defaultLetters, getRandom } from '../helpers'
 import { fetchGenres, fetchFilm } from '../api'
 
 import HiddenText from '../components/HiddenText'
@@ -75,7 +75,7 @@ const GameBoard = () => {
     updateCounter(-2)
 
     const newPosterOverlay = posterOverlay
-    newPosterOverlay[0] = false
+    newPosterOverlay[getRandom(newPosterOverlay.length)] = false
 
     setHintCounter(hintCounter + 1)
 
