@@ -11,7 +11,7 @@
     "no-console": false,
     "jsx-no-lambda": false,
     "no-empty": false,
-    "interface-name": false,
+    "interface-name": false
   },
   "jsRules": {
     "no-console": false
