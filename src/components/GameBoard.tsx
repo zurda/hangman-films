@@ -74,7 +74,7 @@ const GameBoard = () => {
   const onHintClick = () => {
     updateCounter(-2)
 
-    let newPosterOverlay = posterOverlay
+    const newPosterOverlay = posterOverlay
     newPosterOverlay[0] = false
 
     setHintCounter(hintCounter + 1)
