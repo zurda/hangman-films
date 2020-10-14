@@ -29,7 +29,6 @@ const MAX_ATTEMPTS = 7
 const MAX_HINT_COUNT = 2
 const INITIAL_HINT_COST = 2
 const MIN_HINT_COST = 1
-const EMPTY_FILM = { title: '', poster_path: '', overview: '', tagline: '' }
 
 const GameBoard = () => {
   const [counter, setCounter] = useState(MAX_ATTEMPTS)
