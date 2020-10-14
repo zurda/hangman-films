@@ -26,7 +26,7 @@ const GameDataProvider: React.FC = ({ children }) => {
     };
   });
 
-  //Using Promise because in the future this data will be saved in a database
+  // Using Promise because in the future this data will be saved in a database
   const saveMovieId = useCallback(async (id: string): Promise<void> => {
     const newAlreadyPlayedList = [...data.alreadyPlayed, id];
 
