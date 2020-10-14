@@ -35,7 +35,6 @@ interface FilmInfo {
   tagline: string;
 }
 
-const MAX_ATTEMPTS = 7
 const EMPTY_FILM: FilmInfo = {
   id: '',
   title: '',
@@ -43,6 +42,12 @@ const EMPTY_FILM: FilmInfo = {
   overview: '',
   tagline: ''
 }
+
+const MAX_ATTEMPTS = 7
+const MAX_HINT_COUNT = 2
+const INITIAL_HINT_COST = 2
+const MIN_HINT_COST = 1
+const EMPTY_FILM = { title: '', poster_path: '', overview: '', tagline: '' }
 
 const GameBoard = () => {
   const [counter, setCounter] = useState(MAX_ATTEMPTS)
@@ -91,10 +96,14 @@ const GameBoard = () => {
   }
 
   const onHintClick = () => {
-    updateCounter(-2)
+    updateCounter(-Math.max(MIN_HINT_COST, Math.abs(hintCounter - INITIAL_HINT_COST)))
 
     const newPosterOverlay = posterOverlay
-    newPosterOverlay[getRandom(newPosterOverlay.length)] = false
+    const availableIndexes = newPosterOverlay
+      .flatMap((item, index) => (item ? [index] : []))
+    const randomAvailableIndex = availableIndexes[getRandom(availableIndexes.length)]
+
+    newPosterOverlay[randomAvailableIndex] = false
 
     setHintCounter(hintCounter + 1)
 
@@ -161,10 +170,10 @@ const GameBoard = () => {
                   <PosterOverlay key={`Overlay-${index}`} active={!status} />
                 ))}
 
-                {counter > 0 && hintCounter < 1 && (
+                {counter > 0 && hintCounter < MAX_HINT_COUNT && (
                   <HintButton type="button" onClick={onHintClick}>
                     <h4>HINT</h4>
-                    <p>This will cost you two guesses!</p>
+                    <p>This will cost you {Math.abs(hintCounter - INITIAL_HINT_COST)} guesse(s)!</p>
                   </HintButton>
                 )}
               </ImageContainer>
