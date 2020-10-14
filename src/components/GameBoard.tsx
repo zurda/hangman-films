@@ -3,11 +3,13 @@ import React, { useState, useEffect, useMemo } from 'react'
 import { allLetters, getGenreId, defaultLetters, getRandom } from '../helpers'
 import { fetchGenres, fetchFilm } from '../api'
 
+import { useGameData } from '../hooks/GameData';
+
 import HiddenText from '../components/HiddenText'
 import LettersTray from '../components/LettersTray'
 import { Dropdown } from '../components/GameControllers'
 
-import { FaHeart } from 'react-icons/fa';
+import { FaHeart } from 'react-icons/fa'
 
 import {
   Container,
@@ -25,6 +27,22 @@ import {
   Text
 } from './styles/GameBoard'
 
+interface FilmInfo {
+  id: string;
+  title: string;
+  poster_path: string;
+  overview: string;
+  tagline: string;
+}
+
+const EMPTY_FILM: FilmInfo = {
+  id: '',
+  title: '',
+  poster_path: '',
+  overview: '',
+  tagline: ''
+}
+
 const MAX_ATTEMPTS = 7
 const MAX_HINT_COUNT = 2
 const INITIAL_HINT_COST = 2
@@ -40,6 +58,8 @@ const GameBoard = () => {
   const [posterOverlay, setPosterOverlay] = useState(
     Array.from({ length: 28 }, () => true)
   )
+
+  const { alreadyPlayed, saveMovieId } = useGameData();
 
   const updateCounter = (amount: number) => {
     if (counter + amount < 1) {
@@ -67,10 +87,11 @@ const GameBoard = () => {
     setPosterOverlay(flushedOverlay)
   }
 
-  const onGetFilmClick = () => {
+  const onGetFilmClick = async () => {
     resetState()
     const genreId = getGenreId(selectedGenre, genres)
-    fetchFilm(genreId, setFilm)
+    const filmId = await fetchFilm(genreId, alreadyPlayed, setFilm)
+    saveMovieId(filmId)
   }
 
   const onHintClick = () => {
