@@ -14,6 +14,10 @@ export const DropdownContainer = styled.div`
 
   height: 40px;
   border-radius: 8px;
+
+  @media (max-width: 420px) {
+    width: 100%;
+  }
 `
 
 export const Select = styled.select`
