@@ -8,6 +8,7 @@ import { useGameData } from '../hooks/GameData';
 import HiddenText from '../components/HiddenText'
 import LettersTray from '../components/LettersTray'
 import { Dropdown } from '../components/GameControllers'
+import ReleaseHint from '../components/ReleaseHint'
 
 import { FaHeart } from 'react-icons/fa'
 
@@ -24,6 +25,7 @@ import {
   HintButton,
   FilmInfo,
   PosterOverlay,
+  InfoContainer,
   Text
 } from './styles/GameBoard'
 
@@ -33,6 +35,7 @@ interface FilmInfo {
   poster_path: string;
   overview: string;
   tagline: string;
+  release_date: string;
 }
 
 const EMPTY_FILM: FilmInfo = {
@@ -40,7 +43,8 @@ const EMPTY_FILM: FilmInfo = {
   title: '',
   poster_path: '',
   overview: '',
-  tagline: ''
+  tagline: '',
+  release_date: '',
 }
 
 const MAX_ATTEMPTS = 7
@@ -125,6 +129,8 @@ const GameBoard = () => {
       setGuessedLetters(allLetters)
     }
   }, [film.title, guessedLetters, counter])
+
+  console.log(film)
   return (
     <Container>
       <ContentContainer>
@@ -176,7 +182,7 @@ const GameBoard = () => {
                   </HintButton>
                 )}
               </ImageContainer>
-
+              <InfoContainer>
               {counter < 1 && (
                 <FilmInfo>
                   <h3>{film.title}</h3>
@@ -185,6 +191,8 @@ const GameBoard = () => {
                   ) : null}
                 </FilmInfo>
               )}
+              <ReleaseHint releaseDate={film.release_date} counter={counter} setCounter={setCounter} />
+              </InfoContainer>
             </FilmContainer>
           </>
         )}
