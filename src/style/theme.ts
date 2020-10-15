@@ -17,6 +17,9 @@ const theme = {
     mediumGray: '#777',
     darkGray: '#303a3e',
   },
+  utils: {
+    boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.15)',
+  }
 };
 
 export default theme;

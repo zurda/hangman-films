@@ -28,7 +28,7 @@ export const Char = styled.button`
   font-weight: 700;
   width: 100%;
   color: #fff;
-  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: ${props => props.theme.utils.boxShadow};
   border: 0;
 
   @media (max-width: 420px) {

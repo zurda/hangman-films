@@ -41,6 +41,8 @@ export const GenreCard = styled.div`
 
   border-radius: 8px;
 
+  box-shadow: ${props => props.theme.utils.boxShadow};
+
   @media (max-width: 420px) {
     flex-direction: column;
   }
@@ -129,8 +131,9 @@ export const HiddenTextContainer = styled.div`
   border-radius: 8px;
 
   margin-top: 16px;
-
   padding: 16px 24px 0;
+
+  box-shadow: ${props => props.theme.utils.boxShadow};
 `
 
 export const LettersTrayContainer = styled.div`
@@ -138,8 +141,9 @@ export const LettersTrayContainer = styled.div`
   border-radius: 8px;
 
   margin-top: 16px;
-
   padding: 16px 24px;
+
+  box-shadow: ${props => props.theme.utils.boxShadow};
 `;
 
 export const FilmContainer = styled.div`
@@ -153,6 +157,8 @@ export const FilmContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
+
+  box-shadow: ${props => props.theme.utils.boxShadow};
 
   @media (max-width: 720px) {
     flex-direction: column;
@@ -174,6 +180,8 @@ export const ImageContainer = styled.div<ImageContainerProps>`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(7, 1fr);
+
+  box-shadow: ${props => props.theme.utils.boxShadow};
 `
 
 export const PosterOverlay = styled.div<PosterOverlayProps>`
