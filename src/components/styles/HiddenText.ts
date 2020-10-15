@@ -8,9 +8,18 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
   padding: 8px 0px;
   font-family: 'Roboto';
 `
+
+export const WordContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  margin-bottom: 16px;
+`;
 
 export const LetterContainer = styled.span<ILetterContainer>`
   padding: 0 8px;
