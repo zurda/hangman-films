@@ -144,7 +144,7 @@ const GameBoard = () => {
         {film.title !== '' && (
           <>
             <HiddenTextContainer>
-              <HiddenText filmArr={film.title.split('')} guessedLetters={guessedLetters} />
+              <HiddenText filmTitle={film.title} guessedLetters={guessedLetters} />
             </HiddenTextContainer>
 
             <LettersTrayContainer>
