@@ -5,12 +5,17 @@ export const Container = styled.header`
 
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
 
   background-color: ${(props) => props.theme.colors.dark};
   font-weight: bold;
   font-family: 'Roboto', sans-serif; 
   padding: 16px 32px;
+
+  button {
+    background-color: transparent;
+    border: 0;
+  }
 `
 
 export const Title = styled.div`

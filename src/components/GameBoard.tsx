@@ -43,13 +43,16 @@ const EMPTY_FILM: FilmInfo = {
   tagline: ''
 }
 
-const MAX_ATTEMPTS = 7
 const MAX_HINT_COUNT = 2
 const INITIAL_HINT_COST = 2
 const MIN_HINT_COST = 1
 
 const GameBoard = () => {
-  const [counter, setCounter] = useState(MAX_ATTEMPTS)
+  const { alreadyPlayed, saveMovieId, numberOfLives } = useGameData();
+
+  console.log(numberOfLives)
+
+  const [counter, setCounter] = useState(numberOfLives)
   const [film, setFilm] = useState(EMPTY_FILM)
   const [genres, setGenres] = useState<any[]>([])
   const [selectedGenre, setSelectedGenre] = useState({ id: 99 })
@@ -58,8 +61,6 @@ const GameBoard = () => {
   const [posterOverlay, setPosterOverlay] = useState(
     Array.from({ length: 28 }, () => true)
   )
-
-  const { alreadyPlayed, saveMovieId } = useGameData();
 
   const updateCounter = (amount: number) => {
     if (counter + amount < 1) {
@@ -80,7 +81,7 @@ const GameBoard = () => {
   const resetState = () => {
     setFilm(EMPTY_FILM)
     setGuessedLetters(defaultLetters)
-    setCounter(MAX_ATTEMPTS)
+    setCounter(numberOfLives)
     setHintCounter(0)
 
     const flushedOverlay = posterOverlay.map(() => true)
