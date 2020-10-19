@@ -11,6 +11,8 @@ const theme = {
   colors: {
     plain: '#DEDEF7',
     light: '#EFEFFB',
+    mediumLight: '#BAB9DF',
+    medium: '#9E9DD2',
     dark: '#6462B7',
     darker: '#4F4DA8',
     text: '#222',
