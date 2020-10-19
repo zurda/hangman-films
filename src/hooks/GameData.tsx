@@ -49,7 +49,9 @@ const GameDataProvider: React.FC = ({ children }) => {
   });
 
   const numberOfLives = useMemo(() => {
-    if (!data.difficultyLevel) return 7;
+    if (!data.difficultyLevel) {
+      return 7;
+    }
     switch (data.difficultyLevel) {
       case 'easy':
         return 9;
