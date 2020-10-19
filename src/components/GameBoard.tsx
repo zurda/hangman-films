@@ -50,8 +50,6 @@ const MIN_HINT_COST = 1
 const GameBoard = () => {
   const { alreadyPlayed, saveMovieId, numberOfLives } = useGameData();
 
-  console.log(numberOfLives)
-
   const [counter, setCounter] = useState(numberOfLives)
   const [film, setFilm] = useState(EMPTY_FILM)
   const [genres, setGenres] = useState<any[]>([])
