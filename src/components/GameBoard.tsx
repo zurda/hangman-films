@@ -48,12 +48,7 @@ const INITIAL_HINT_COST = 2
 const MIN_HINT_COST = 1
 
 const GameBoard = () => {
-  const { 
-    alreadyPlayed,
-    saveMovieId, 
-    numberOfLives, 
-    difficultyLevel, 
-  } = useGameData();
+  const { alreadyPlayed, saveMovieId, numberOfLives } = useGameData();
 
   const [counter, setCounter] = useState(numberOfLives)
   const [film, setFilm] = useState(EMPTY_FILM)
