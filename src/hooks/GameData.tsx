@@ -74,7 +74,7 @@ const GameDataProvider: React.FC = ({ children }) => {
   const handleDifficultyChange = useCallback(
     async (mode: DifficultyModes): Promise<void> => {
       const newData = { ...data, difficultyLevel: mode };
-      updateGameData(newData)
+      updateGameData(newData);
     }, [data, updateGameData]);
 
   // Using Promise because in the future this data will be saved in a database

@@ -21,8 +21,6 @@ const ConfigWindow = () => {
     handleDifficultyChange
   } = useGameData();
 
-
-
   return (
     <Container active={configWindowOpen}>
       <OverlayBackground

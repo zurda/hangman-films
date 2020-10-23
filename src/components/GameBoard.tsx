@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect, useMemo, useCallback } from 'react'
 
 import { allLetters, getGenreId, defaultLetters, getRandom } from '../helpers'
 import { fetchGenres, fetchFilm } from '../api'
@@ -48,7 +48,12 @@ const INITIAL_HINT_COST = 2
 const MIN_HINT_COST = 1
 
 const GameBoard = () => {
-  const { alreadyPlayed, saveMovieId, numberOfLives } = useGameData();
+  const { 
+    alreadyPlayed,
+    saveMovieId, 
+    numberOfLives, 
+    difficultyLevel, 
+  } = useGameData();
 
   const [counter, setCounter] = useState(numberOfLives)
   const [film, setFilm] = useState(EMPTY_FILM)
@@ -76,7 +81,7 @@ const GameBoard = () => {
       : updateCounter(-1)
   }
 
-  const resetState = () => {
+  const resetState = useCallback(() => {
     setFilm(EMPTY_FILM)
     setGuessedLetters(defaultLetters)
     setCounter(numberOfLives)
@@ -84,7 +89,7 @@ const GameBoard = () => {
 
     const flushedOverlay = posterOverlay.map(() => true)
     setPosterOverlay(flushedOverlay)
-  }
+  },[numberOfLives, posterOverlay])
 
   const onGetFilmClick = async () => {
     resetState()
@@ -124,6 +129,17 @@ const GameBoard = () => {
       setGuessedLetters(allLetters)
     }
   }, [film.title, guessedLetters, counter])
+
+  useEffect(() => {
+    setFilm(EMPTY_FILM)
+    setGuessedLetters(defaultLetters)
+    setCounter(numberOfLives)
+    setHintCounter(0)
+
+    const flushedOverlay = Array.from({length: posterOverlay.length}, () => true);
+    setPosterOverlay(flushedOverlay)
+  },[numberOfLives, posterOverlay.length])
+
   return (
     <Container>
       <ContentContainer>
