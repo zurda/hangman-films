@@ -47,7 +47,7 @@ export const ContentCard = styled.div`
 
   max-width: 500px;
 
-  background-color: #fff;
+  background-color: ${(props)=> props.theme.colors.card};
 
   z-index: 2;
 
@@ -61,11 +61,15 @@ export const ContentCard = styled.div`
 export const TopBar = styled.div`
   width: 100%;
 
-  background-color: #f2f2f2;
+  background-color: ${(props)=> props.theme.colors.plain};
 
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  svg {
+    color: ${(props)=> props.theme.colors.text};
+  }
 
   h2 {
     padding-left: 16px;
@@ -87,11 +91,11 @@ export const Content = styled.div`
   }
 `;
 
-export const GameDifficulty = styled.div`
-  margin: 16px 0;
+export const ConfigItem = styled.div`
+  margin: 16px 0 32px;
 `;
 
-export const DifficultyButton = styled.button<DifficultyButtonProps>`
+export const ConfigButton = styled.button<DifficultyButtonProps>`
   padding: 4px 8px;
 
   border: 0;
@@ -102,7 +106,7 @@ export const DifficultyButton = styled.button<DifficultyButtonProps>`
 
   background-color: ${(props) => {
     return props.active
-      ? props.theme.colors.darker
+      ? props.theme.colors.primary
       : props.theme.colors.mediumLight;
   }};
 

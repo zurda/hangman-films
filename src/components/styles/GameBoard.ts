@@ -36,7 +36,7 @@ export const GenreCard = styled.div`
   align-items: center;
   justify-content: center;
 
-  background-color: #fff;
+  background-color: ${props => props.theme.colors.card};
   padding: 16px 24px;
 
   border-radius: 8px;
@@ -57,7 +57,7 @@ export const Text = styled.p`
   svg{
     width: 18px;
     margin-left: 8px;
-    color: ${(props) => props.theme.colors.dark};
+    color: ${(props) => props.theme.colors.primary};
   }
 
   @media (max-width: 420px) {
@@ -90,7 +90,7 @@ export const ButtonContainer = styled.div`
 
 export const Button = styled.button`
   color: white;
-  background-color: ${(props) => props.theme.colors.dark};
+  background-color: ${(props) => props.theme.colors.primary};
   text-transform: uppercase;
   border-radius: 8px;
 
@@ -127,7 +127,7 @@ export const RoundButton = styled(Button)`
 `
 
 export const HiddenTextContainer = styled.div`
-  background-color: #FFF;
+  background-color: ${props => props.theme.colors.card};
   border-radius: 8px;
 
   margin-top: 16px;
@@ -137,7 +137,7 @@ export const HiddenTextContainer = styled.div`
 `
 
 export const LettersTrayContainer = styled.div`
-  background-color: #FFF;
+  background-color: ${props => props.theme.colors.card};
   border-radius: 8px;
 
   margin-top: 16px;
@@ -147,7 +147,7 @@ export const LettersTrayContainer = styled.div`
 `;
 
 export const FilmContainer = styled.div`
-  background-color: #FFF;
+  background-color: ${props => props.theme.colors.card};
   border-radius: 8px;
 
   margin-top: 16px;
