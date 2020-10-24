@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect, useMemo, useCallback } from 'react'
 
 import { allLetters, getGenreId, defaultLetters, getRandom } from '../helpers'
 import { fetchGenres, fetchFilm } from '../api'
@@ -43,13 +43,14 @@ const EMPTY_FILM: FilmInfo = {
   tagline: ''
 }
 
-const MAX_ATTEMPTS = 7
 const MAX_HINT_COUNT = 2
 const INITIAL_HINT_COST = 2
 const MIN_HINT_COST = 1
 
 const GameBoard = () => {
-  const [counter, setCounter] = useState(MAX_ATTEMPTS)
+  const { alreadyPlayed, saveMovieId, numberOfLives } = useGameData();
+
+  const [counter, setCounter] = useState(numberOfLives)
   const [film, setFilm] = useState(EMPTY_FILM)
   const [genres, setGenres] = useState<any[]>([])
   const [selectedGenre, setSelectedGenre] = useState({ id: 99 })
@@ -58,8 +59,6 @@ const GameBoard = () => {
   const [posterOverlay, setPosterOverlay] = useState(
     Array.from({ length: 28 }, () => true)
   )
-
-  const { alreadyPlayed, saveMovieId } = useGameData();
 
   const updateCounter = (amount: number) => {
     if (counter + amount < 1) {
@@ -77,15 +76,15 @@ const GameBoard = () => {
       : updateCounter(-1)
   }
 
-  const resetState = () => {
+  const resetState = useCallback(() => {
     setFilm(EMPTY_FILM)
     setGuessedLetters(defaultLetters)
-    setCounter(MAX_ATTEMPTS)
+    setCounter(numberOfLives)
     setHintCounter(0)
 
     const flushedOverlay = posterOverlay.map(() => true)
     setPosterOverlay(flushedOverlay)
-  }
+  },[numberOfLives, posterOverlay])
 
   const onGetFilmClick = async () => {
     resetState()
@@ -125,6 +124,17 @@ const GameBoard = () => {
       setGuessedLetters(allLetters)
     }
   }, [film.title, guessedLetters, counter])
+
+  useEffect(() => {
+    setFilm(EMPTY_FILM)
+    setGuessedLetters(defaultLetters)
+    setCounter(numberOfLives)
+    setHintCounter(0)
+
+    const flushedOverlay = Array.from({length: posterOverlay.length}, () => true);
+    setPosterOverlay(flushedOverlay)
+  },[numberOfLives, posterOverlay.length])
+
   return (
     <Container>
       <ContentContainer>
