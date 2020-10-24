@@ -1,5 +1,5 @@
 {
-  "name": "hangman-project",
+  "name": "hangman-films",
   "version": "0.1.0",
   "author": "Michal Weisman @zurda",
   "license": "MIT",
@@ -42,16 +42,12 @@
     ]
   },
   "devDependencies": {
-    "@emotion/core": "^10.0.27",
-    "@emotion/styled": "^10.0.27",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "@types/reach__router": "^1.2.6",
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
-    "emotion": "^10.0.27",
-    "react-emotion": "^10.0.0",
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^4.1.0",
