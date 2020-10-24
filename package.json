@@ -4,7 +4,7 @@
   "author": "Michal Weisman @zurda",
   "license": "MIT",
   "private": true,
-  "homepage": "http://zurda.github.io/hangman-react",
+  "homepage": "https://hangman-films.netlify.app",
   "dependencies": {
     "@types/styled-components": "^5.1.4",
     "cross-env": "^6.0.3",
@@ -22,8 +22,6 @@
     "test": "react-scripts test",
     "test:ci": "cross-env CI=true react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "yarn build",
-    "deploy": "gh-pages -d build",
     "lint": "tslint --project .",
     "format": "prettier --write src/**/*.{js,jsx}",
     "format:test": "prettier --check src/**/*.{js,jsx}"
@@ -53,7 +51,6 @@
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
     "emotion": "^10.0.27",
-    "gh-pages": "^2.1.1",
     "react-emotion": "^10.0.0",
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",

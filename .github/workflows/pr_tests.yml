@@ -25,6 +25,5 @@ jobs:
     - name: Build
       run: |
         npm run build
-        npm run predeploy
       env:
         REACT_APP_MOVIEDB_API_KEY: '${{ secrets.REACT_APP_MOVIEDB_API_KEY }}'
