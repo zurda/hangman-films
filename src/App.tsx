@@ -18,7 +18,7 @@ const App = () => (
       <GameBoard />
       <Footer>
         <span>This project is available on{' '}
-          <a href="https://github.com/zurda/hangman-react">Github</a></span>
+          <a href="https://github.com/zurda/hangman-films">Github</a></span>
       </Footer>
       <GlobalStyle />
     </ThemeProvider>

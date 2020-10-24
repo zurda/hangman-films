@@ -15,7 +15,7 @@ jobs:
         id: lighthouseCheck
         with:
           outputDirectory: /tmp/artifacts
-          urls: "https://zurda.github.io/hangman-react/"
+          urls: "https://hangman-films.netlify.app/"
       - name: Handle Lighthouse Check results
         uses: foo-software/lighthouse-check-status-action@master
         with:
