@@ -6,23 +6,24 @@ import React, {
   useMemo,
 } from 'react';
 
-import ConfigWindow from '../components/ConfigWindow';
-
 type DifficultyModes = 'easy' | 'medium' | 'hard' | 'expert';
 
 interface IGameData {
+  darkTheme: boolean;
   alreadyPlayed: string[];
   difficultyLevel: DifficultyModes;
 }
 
 interface GameDataContextData {
-  alreadyPlayed: string[];
-  difficultyLevel: DifficultyModes;
+  darkTheme: boolean;
   numberOfLives: number;
+  alreadyPlayed: string[];
   configWindowOpen: boolean;
-  setConfigWindowOpen(newStatus: boolean): void;
-  handleDifficultyChange(mode: DifficultyModes): void;
+  difficultyLevel: DifficultyModes;
   saveMovieId(id: string): Promise<void>;
+  setConfigWindowOpen(newStatus: boolean): void;
+  handleThemeChange(active: boolean): Promise<void>;
+  handleDifficultyChange(mode: DifficultyModes): void;
 }
 
 const GameDataContext = createContext<GameDataContextData>(
@@ -37,7 +38,11 @@ const GameDataProvider: React.FC = ({ children }) => {
     if (storedData) {
       const gameData = JSON.parse(storedData) as IGameData;
 
-      if (gameData.alreadyPlayed && gameData.difficultyLevel) {
+      if (
+        gameData.alreadyPlayed 
+        && gameData.difficultyLevel 
+        && gameData.darkTheme
+      ) {
         return JSON.parse(storedData) as IGameData;
       }
     }
@@ -45,6 +50,7 @@ const GameDataProvider: React.FC = ({ children }) => {
     return {
       alreadyPlayed: [],
       difficultyLevel: 'medium',
+      darkTheme: false,
     };
   });
 
@@ -77,6 +83,12 @@ const GameDataProvider: React.FC = ({ children }) => {
       updateGameData(newData);
     }, [data, updateGameData]);
 
+  const handleThemeChange = useCallback( 
+    async (active: boolean): Promise<void> => {
+      const newData = { ...data, darkTheme: active };
+      updateGameData(newData); 
+    },[data, updateGameData]);
+
   // Using Promise because in the future this data will be saved in a database
   const saveMovieId = useCallback(async (id: string): Promise<void> => {
     const newAlreadyPlayedList = [...data.alreadyPlayed, id];
@@ -88,16 +100,17 @@ const GameDataProvider: React.FC = ({ children }) => {
   return (
     <GameDataContext.Provider
       value={{
+        darkTheme: data.darkTheme,
         alreadyPlayed: data.alreadyPlayed,
         difficultyLevel: data.difficultyLevel,
         numberOfLives,
         configWindowOpen,
-        setConfigWindowOpen,
         handleDifficultyChange,
-        saveMovieId
+        setConfigWindowOpen,
+        handleThemeChange,
+        saveMovieId,
       }}
     >
-      <ConfigWindow />
       {children}
     </GameDataContext.Provider>
   );
