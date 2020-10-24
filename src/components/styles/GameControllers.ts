@@ -15,6 +15,10 @@ export const DropdownContainer = styled.div`
   height: 40px;
   border-radius: 8px;
 
+  select {
+    color: ${(props) => props.theme.colors.text};
+  }
+
   @media (max-width: 420px) {
     width: 100%;
   }
@@ -24,7 +28,7 @@ export const Select = styled.select`
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-color: transparent;
+  background-color: ${(props) => props.theme.colors.light};;
   background-image: url(${downArrowSvg});
   background-size: 8px;
   background-repeat: no-repeat;

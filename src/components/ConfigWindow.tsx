@@ -9,16 +9,18 @@ import {
   ContentCard,
   TopBar,
   Content,
-  GameDifficulty,
-  DifficultyButton
+  ConfigItem,
+  ConfigButton
 } from './styles/ConfigWindow';
 
 const ConfigWindow = () => {
   const {
+    darkTheme,
     difficultyLevel,
     configWindowOpen,
+    handleThemeChange,
     setConfigWindowOpen,
-    handleDifficultyChange
+    handleDifficultyChange,
   } = useGameData();
 
   return (
@@ -37,43 +39,65 @@ const ConfigWindow = () => {
         </TopBar>
 
         <Content>
-          <GameDifficulty>
+          <ConfigItem>
             <h3>Game Difficulty</h3>
 
             <section>
-              <DifficultyButton
+              <ConfigButton
                 type="button"
                 onClick={() => handleDifficultyChange('easy')}
                 active={difficultyLevel === 'easy'}
               >
                 Easy
-              </DifficultyButton>
+              </ConfigButton>
 
-              <DifficultyButton
+              <ConfigButton
                 type="button"
                 onClick={() => handleDifficultyChange('medium')}
                 active={difficultyLevel === 'medium'}
               >
                 Medium
-              </DifficultyButton>
+              </ConfigButton>
 
-              <DifficultyButton
+              <ConfigButton
                 type="button"
                 onClick={() => handleDifficultyChange('hard')}
                 active={difficultyLevel === 'hard'}
               >
                 Hard
-              </DifficultyButton>
+              </ConfigButton>
 
-              <DifficultyButton
+              <ConfigButton
                 type="button"
                 onClick={() => handleDifficultyChange('expert')}
                 active={difficultyLevel === 'expert'}
               >
                 Expert
-              </DifficultyButton>
+              </ConfigButton>
             </section>
-          </GameDifficulty>
+          </ConfigItem>
+
+          <ConfigItem>
+            <h3>Color Theme</h3>
+
+            <section>
+              <ConfigButton
+                type="button"
+                onClick={() => handleThemeChange(false)}
+                active={!darkTheme}
+              >
+                Light
+              </ConfigButton>
+
+              <ConfigButton
+                type="button"
+                onClick={() => handleThemeChange(true)}
+                active={darkTheme}
+              >
+                Dark
+              </ConfigButton> 
+            </section>
+          </ConfigItem>
 
         </Content>
 
