@@ -3,13 +3,13 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react'
 import { allLetters, getGenreId, defaultLetters, getRandom } from '../helpers'
 import { fetchGenres, fetchFilm } from '../api'
 
-import { useGameData } from '../hooks/GameData';
+import { useGameData } from '../hooks/GameData'
 
 import HiddenText from '../components/HiddenText'
 import LettersTray from '../components/LettersTray'
 import { Dropdown } from '../components/GameControllers'
 
-import { FaHeart } from 'react-icons/fa'
+import { FaVideo } from 'react-icons/fa'
 
 import {
   Container,
@@ -28,11 +28,11 @@ import {
 } from './styles/GameBoard'
 
 interface FilmInfo {
-  id: string;
-  title: string;
-  poster_path: string;
-  overview: string;
-  tagline: string;
+  id: string
+  title: string
+  poster_path: string
+  overview: string
+  tagline: string
 }
 
 const EMPTY_FILM: FilmInfo = {
@@ -48,7 +48,7 @@ const INITIAL_HINT_COST = 2
 const MIN_HINT_COST = 1
 
 const GameBoard = () => {
-  const { alreadyPlayed, saveMovieId, numberOfLives } = useGameData();
+  const { alreadyPlayed, saveMovieId, numberOfLives } = useGameData()
 
   const [counter, setCounter] = useState(numberOfLives)
   const [film, setFilm] = useState(EMPTY_FILM)
@@ -63,7 +63,7 @@ const GameBoard = () => {
 
   const updateCounter = (amount: number) => {
     if (counter + amount < 1) {
-      const newPosterOverlay = posterOverlay.map(_ => false)
+      const newPosterOverlay = posterOverlay.map((_) => false)
       setPosterOverlay(newPosterOverlay)
     }
     setCounter(counter + amount)
@@ -96,11 +96,14 @@ const GameBoard = () => {
   }
 
   const onHintClick = () => {
-    updateCounter(-Math.max(MIN_HINT_COST, Math.abs(hintCounter - INITIAL_HINT_COST)))
+    updateCounter(
+      -Math.max(MIN_HINT_COST, Math.abs(hintCounter - INITIAL_HINT_COST))
+    )
 
     const newPosterOverlay = posterOverlay
-    const availableIndexes = newPosterOverlay
-      .flatMap((item, index) => (item ? [index] : []))
+    const availableIndexes = newPosterOverlay.flatMap((item, index) =>
+      item ? [index] : []
+    )
     const randomAvailableIndex = availableIndexes[getRandom(availableIndexes.length)]
 
     newPosterOverlay[randomAvailableIndex] = false
@@ -120,7 +123,9 @@ const GameBoard = () => {
     if (counter < 1) {
       setGuessedLetters(allLetters)
     }
-    const remainingLetters = film.title.split('').filter((filmLetter) => guessedLetters.indexOf(filmLetter) === -1)
+    const remainingLetters = film.title
+      .split('')
+      .filter((filmLetter) => guessedLetters.indexOf(filmLetter) === -1)
     if (film.title !== '' && remainingLetters.length === 0) {
       setGuessedLetters(allLetters)
       setGameWon(true)
@@ -133,7 +138,7 @@ const GameBoard = () => {
     setCounter(numberOfLives)
     setHintCounter(0)
 
-    const flushedOverlay = Array.from({ length: posterOverlay.length }, () => true);
+    const flushedOverlay = Array.from({ length: posterOverlay.length }, () => true)
     setPosterOverlay(flushedOverlay)
   }, [numberOfLives, posterOverlay.length])
 
@@ -160,17 +165,23 @@ const GameBoard = () => {
             </HiddenTextContainer>
 
             <LettersTrayContainer>
-              <Text>{counter > 0 && (
-                <>
-                  {gameWon ? `You won!🎉\nWith ${hearts.length} guess${hearts.length > 1 ? 'es' : ''} to go 👏\n` :
-                    <>
-                      Guesses left:
-                  {hearts.map(item => (
-                      <FaHeart key={item.id} />
-                    ))}
-                    </>}
-                </>
-              )}
+              <Text>
+                {counter > 0 && (
+                  <>
+                    {gameWon ? (
+                      `You won!🎉\nWith ${hearts.length} guess${
+                        hearts.length > 1 ? 'es' : ''
+                      } to go 👏\n`
+                    ) : (
+                      <>
+                        Guesses left:
+                        {hearts.map((item) => (
+                          <FaVideo key={item.id} />
+                        ))}
+                      </>
+                    )}
+                  </>
+                )}
               </Text>
               <LettersTray
                 guessedLetters={guessedLetters}
@@ -180,14 +191,18 @@ const GameBoard = () => {
 
             <FilmContainer>
               <ImageContainer posterImage={film.poster_path}>
-                {!gameWon && posterOverlay.map((status, index) => (
-                  <PosterOverlay key={`Overlay-${index}`} active={!status} />
-                ))}
+                {!gameWon &&
+                  posterOverlay.map((status, index) => (
+                    <PosterOverlay key={`Overlay-${index}`} active={!status} />
+                  ))}
 
                 {counter > 0 && hintCounter < MAX_HINT_COUNT && !gameWon && (
                   <HintButton type="button" onClick={onHintClick}>
                     <h4>HINT</h4>
-                    <p>This will cost you {Math.abs(hintCounter - INITIAL_HINT_COST)} guesse(s)!</p>
+                    <p>
+                      This will cost you {Math.abs(hintCounter - INITIAL_HINT_COST)}{' '}
+                      guesse(s)!
+                    </p>
                   </HintButton>
                 )}
               </ImageContainer>
