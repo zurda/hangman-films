@@ -130,7 +130,6 @@ const GameBoard = () => {
     }
   }, [film.title, guessedLetters, counter])
 
-  console.log(film)
   return (
     <Container>
       <ContentContainer>
@@ -191,7 +190,7 @@ const GameBoard = () => {
                   ) : null}
                 </FilmInfo>
               )}
-              <ReleaseHint releaseDate={film.release_date} counter={counter} setCounter={setCounter} />
+              <ReleaseHint releaseYear={film.release_date.substring(0,4)} counter={counter} setCounter={setCounter} />
               </InfoContainer>
             </FilmContainer>
           </>
