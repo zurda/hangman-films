@@ -165,6 +165,15 @@ export const FilmContainer = styled.div`
   }
 `;
 
+export const InfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: calc(100% - 250px);
+  height: 345px;
+`
+
 export const ImageContainer = styled.div<ImageContainerProps>`
   background: url(${(props) => `http://image.tmdb.org/t/p/w154${props.posterImage}`});
   background-repeat: no-repeat;

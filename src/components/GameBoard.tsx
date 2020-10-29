@@ -8,6 +8,7 @@ import { useGameData } from '../hooks/GameData'
 import HiddenText from '../components/HiddenText'
 import LettersTray from '../components/LettersTray'
 import { Dropdown } from '../components/GameControllers'
+import ReleaseHint from '../components/ReleaseHint'
 
 import { FaVideo } from 'react-icons/fa'
 
@@ -33,6 +34,7 @@ interface FilmInfo {
   poster_path: string
   overview: string
   tagline: string
+  release_date: string;
 }
 
 const EMPTY_FILM: FilmInfo = {
@@ -40,7 +42,8 @@ const EMPTY_FILM: FilmInfo = {
   title: '',
   poster_path: '',
   overview: '',
-  tagline: ''
+  tagline: '',
+  release_date: '',
 }
 
 const MAX_HINT_COUNT = 2
@@ -169,17 +172,16 @@ const GameBoard = () => {
                 {counter > 0 && (
                   <>
                     {gameWon ? (
-                      `You won!🎉\nWith ${hearts.length} guess${
-                        hearts.length > 1 ? 'es' : ''
+                      `You won!🎉\nWith ${hearts.length} guess${hearts.length > 1 ? 'es' : ''
                       } to go 👏\n`
                     ) : (
-                      <>
-                        Guesses left:
+                        <>
+                          Guesses left:
                         {hearts.map((item) => (
                           <FaVideo key={item.id} />
                         ))}
-                      </>
-                    )}
+                        </>
+                      )}
                   </>
                 )}
               </Text>
@@ -189,19 +191,19 @@ const GameBoard = () => {
               />
             </LettersTrayContainer>
 
-            <FilmContainer>
+            <FilmContainer style={{ justifyContent: 'flex-start' }}>
               <ImageContainer posterImage={film.poster_path}>
                 {!gameWon &&
                   posterOverlay.map((status, index) => (
                     <PosterOverlay key={`Overlay-${index}`} active={!status} />
                   ))}
 
-                {counter > 0 && hintCounter < MAX_HINT_COUNT && !gameWon && (
+                {counter > MAX_HINT_COUNT && hintCounter < MAX_HINT_COUNT && !gameWon && (
                   <HintButton type="button" onClick={onHintClick}>
                     <h4>HINT</h4>
                     <p>
                       This will cost you {Math.abs(hintCounter - INITIAL_HINT_COST)}{' '}
-                      guesse(s)!
+                      guess(es)!
                     </p>
                   </HintButton>
                 )}
@@ -215,11 +217,13 @@ const GameBoard = () => {
                   ) : null}
                 </FilmInfo>
               )}
+              <ReleaseHint releaseYear={film.release_date.substring(0, 4)} counter={counter} setCounter={setCounter} gameWon={gameWon} />
             </FilmContainer>
           </>
-        )}
-      </ContentContainer>
-    </Container>
+        )
+        }
+      </ContentContainer >
+    </Container >
   )
 }
 
