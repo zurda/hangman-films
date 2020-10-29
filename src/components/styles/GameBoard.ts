@@ -14,8 +14,15 @@ export const Container = styled.div`
   padding: 16px 32px;
   background-color: ${(props) => props.theme.colors.plain};
   min-height: calc(100vh - 130px);
-  @media (min-width: 420px) {
-    font-size: 18px;
+  font-size: 18px;
+
+  @media (max-width: 640px) {
+    padding: 16px;
+  }
+
+  @media (max-width: 420px) {
+    font-size: 16px;
+    padding: 8px;
   }
 `
 
@@ -29,32 +36,71 @@ export const GenreCard = styled.div`
   align-items: center;
   justify-content: center;
 
-  background-color: #fff;
+  background-color: ${props => props.theme.colors.card};
   padding: 16px 24px;
 
   border-radius: 8px;
+
+  box-shadow: ${props => props.theme.utils.boxShadow};
+
+  @media (max-width: 420px) {
+    flex-direction: column;
+  }
 `
 
 export const Text = styled.p`
   font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   svg{
+    width: 18px;
     margin-left: 8px;
-    color: ${(props) => props.theme.colors.dark};
+    color: ${(props) => props.theme.colors.primary};
+  }
+
+  @media (max-width: 420px) {
+    font-size: 16px;
+
+    svg{
+      width: 16px;
+      margin-left: 4px;
+    }
+  }
+
+  @media (max-width: 300px) {
+    font-size: 14px;
+
+    svg{
+      width: 14px;
+    }
+  }
+`
+
+export const ButtonContainer = styled.div`
+  margin-left: 16px;
+
+  @media (max-width: 420px) {
+    margin-left: 0;
+    margin-top: 8px;
+    width: 100%;
   }
 `
 
 export const Button = styled.button`
   color: white;
-  background-color: ${(props) => props.theme.colors.dark};
+  background-color: ${(props) => props.theme.colors.primary};
   text-transform: uppercase;
   border-radius: 8px;
 
   height:40px;
 
   font-weight: bold;
-  padding: 8px 16px;
+  font-size: 18px;
   text-align: center;
+
+  padding: 8px 16px;
   -webkit-transition-duration: 0.2s; /* Safari */
   transition-duration: 0.2s;
   border: none;
@@ -64,8 +110,10 @@ export const Button = styled.button`
   &:hover {
     background-color: ${(props) => props.theme.colors.darker};
   }
-  @media (min-width: 420px) {
-    font-size: 18px;
+
+  @media (max-width: 420px) {
+    width: 100%;
+    font-size: 16px;
   }
 `
 
@@ -78,30 +126,28 @@ export const RoundButton = styled(Button)`
   margin: 0 auto;
 `
 
-export const ButtonContainer = styled.div`
-  margin-left: 16px;
-`
-
 export const HiddenTextContainer = styled.div`
-  background-color: #FFF;
+  background-color: ${props => props.theme.colors.card};
   border-radius: 8px;
 
   margin-top: 16px;
+  padding: 16px 24px 0;
 
-  padding: 16px 24px;
+  box-shadow: ${props => props.theme.utils.boxShadow};
 `
 
 export const LettersTrayContainer = styled.div`
-  background-color: #FFF;
+  background-color: ${props => props.theme.colors.card};
   border-radius: 8px;
 
   margin-top: 16px;
-
   padding: 16px 24px;
+
+  box-shadow: ${props => props.theme.utils.boxShadow};
 `;
 
 export const FilmContainer = styled.div`
-  background-color: #FFF;
+  background-color: ${props => props.theme.colors.card};
   border-radius: 8px;
 
   margin-top: 16px;
@@ -111,6 +157,12 @@ export const FilmContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
+
+  box-shadow: ${props => props.theme.utils.boxShadow};
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+  }
 `;
 
 export const InfoContainer = styled.div`
@@ -137,6 +189,8 @@ export const ImageContainer = styled.div<ImageContainerProps>`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(7, 1fr);
+
+  box-shadow: ${props => props.theme.utils.boxShadow};
 `
 
 export const PosterOverlay = styled.div<PosterOverlayProps>`
@@ -173,4 +227,9 @@ export const FilmInfo = styled.div`
   }
 
   margin-left: 16px;
+
+  @media (max-width: 720px) {
+    margin-left: 0px;
+    margin-top: 16px;
+  }
 `;

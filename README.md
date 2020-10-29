@@ -1,6 +1,6 @@
-![Actions Status](https://github.com/zurda/hangman-react/workflows/PRTests/badge.svg) ![Actions Status](https://github.com/zurda/hangman-react/workflows/MasterDeployCI/badge.svg) ![Actions Status](https://github.com/zurda/hangman-react/workflows/Lighthouse%20audit/badge.svg)
+![Actions Status](https://github.com/zurda/hangman-films/workflows/PRTests/badge.svg) ![Actions Status](https://github.com/zurda/hangman-films/workflows/Lighthouse%20audit/badge.svg) ![Netlify Status](https://api.netlify.com/api/v1/badges/bc94fbe4-bcad-4900-9706-71df99a8d8ef/deploy-status)
 
-[![open issues](https://img.shields.io/github/issues/zurda/hangman-react.svg)](https://github.com/zurda/hangman-react/issues) [![help wanted issues open](https://img.shields.io/github/issues/zurda/hangman-react/help%20wanted.svg)](https://github.com/zurda/hangman-react/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) <a href="https://twitter.com/zur_da/follow?screen_name=zur_da">
+[![open issues](https://img.shields.io/github/issues/zurda/hangman-films.svg)](https://github.com/zurda/hangman-films/issues) [![help wanted issues open](https://img.shields.io/github/issues/zurda/hangman-films/help%20wanted.svg)](https://github.com/zurda/hangman-films/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) <a href="https://twitter.com/zur_da/follow?screen_name=zur_da">
     <img src="https://img.shields.io/twitter/follow/zur_da.svg?style=social&logo=twitter"
         alt="follow on Twitter">
 </a>
@@ -8,7 +8,7 @@
 
 # Hangman React 
 
-<strong><a href="https://zurda.github.io/hangman-react/">Here's the project link</a></strong>
+<strong><a href="https://hangman-films.netlify.app">Here's the project link</a></strong>
 
 <img src="./hangman-react-screen.png" 
 alt="Screen grab of game" width="500" />
@@ -27,5 +27,5 @@ To run the project locally:
 
 ## Contributions
 
-This project is absolutely accepting pull requests (first-timers welcome!). Feel free to report bugs and suggest features by opening a new issue. Check out the open [![good first issues](https://img.shields.io/github/issues/zurda/hangman-react/good%20first%20issue.svg)](https://github.com/zurda/hangman-react/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first%22%issue)
+This project is absolutely accepting pull requests (first-timers welcome!). Feel free to report bugs and suggest features by opening a new issue. Check out the open [![good first issues](https://img.shields.io/github/issues/zurda/hangman-films/good%20first%20issue.svg)](https://github.com/zurda/hangman-films/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first%22%issue)
 
