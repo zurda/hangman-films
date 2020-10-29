@@ -25,7 +25,6 @@ import {
   HintButton,
   FilmInfo,
   PosterOverlay,
-  InfoContainer,
   Text
 } from './styles/GameBoard'
 
