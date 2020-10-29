@@ -12,6 +12,7 @@ export const fetchFilm = async (
     poster_path: string;
     overview: string;
     tagline: string;
+    release_date: string;
   }>>): Promise<string> => {
   const result = await fetch(
     `https://api.themoviedb.org/3/discover/movie?api_key=${API_MOVIEDB_KEY}&language=en-US&include_adult=false&with_genres=${genreId
