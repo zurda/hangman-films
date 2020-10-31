@@ -25,7 +25,8 @@ import {
   HintButton,
   FilmInfo,
   PosterOverlay,
-  Text
+  Text,
+  PosterContainer
 } from './styles/GameBoard'
 
 interface FilmInfo {
@@ -34,7 +35,7 @@ interface FilmInfo {
   poster_path: string
   overview: string
   tagline: string
-  release_date: string;
+  release_date: string
 }
 
 const EMPTY_FILM: FilmInfo = {
@@ -43,7 +44,7 @@ const EMPTY_FILM: FilmInfo = {
   poster_path: '',
   overview: '',
   tagline: '',
-  release_date: '',
+  release_date: ''
 }
 
 const MAX_HINT_COUNT = 2
@@ -172,16 +173,17 @@ const GameBoard = () => {
                 {counter > 0 && (
                   <>
                     {gameWon ? (
-                      `You won!🎉\nWith ${hearts.length} guess${hearts.length > 1 ? 'es' : ''
+                      `You won!🎉\nWith ${hearts.length} guess${
+                        hearts.length > 1 ? 'es' : ''
                       } to go 👏\n`
                     ) : (
-                        <>
-                          Guesses left:
+                      <>
+                        Guesses left:
                         {hearts.map((item) => (
                           <FaVideo key={item.id} />
                         ))}
-                        </>
-                      )}
+                      </>
+                    )}
                   </>
                 )}
               </Text>
@@ -192,22 +194,25 @@ const GameBoard = () => {
             </LettersTrayContainer>
 
             <FilmContainer style={{ justifyContent: 'flex-start' }}>
-              <ImageContainer posterImage={film.poster_path}>
-                {!gameWon &&
-                  posterOverlay.map((status, index) => (
-                    <PosterOverlay key={`Overlay-${index}`} active={!status} />
-                  ))}
-
-                {counter > MAX_HINT_COUNT && hintCounter < MAX_HINT_COUNT && !gameWon && (
-                  <HintButton type="button" onClick={onHintClick}>
-                    <h4>HINT</h4>
-                    <p>
-                      This will cost you {Math.abs(hintCounter - INITIAL_HINT_COST)}{' '}
-                      guess(es)!
-                    </p>
-                  </HintButton>
-                )}
-              </ImageContainer>
+              <PosterContainer>
+                <ImageContainer posterImage={film.poster_path}>
+                  {!gameWon &&
+                    posterOverlay.map((status, index) => (
+                      <PosterOverlay key={`Overlay-${index}`} active={!status} />
+                    ))}
+                </ImageContainer>
+                {counter > MAX_HINT_COUNT &&
+                  hintCounter < MAX_HINT_COUNT &&
+                  !gameWon && (
+                    <HintButton type="button" onClick={onHintClick}>
+                      <h4>HINT</h4>
+                      <p>
+                        This will cost you{' '}
+                        {Math.abs(hintCounter - INITIAL_HINT_COST)} guess(es)!
+                      </p>
+                    </HintButton>
+                  )}
+              </PosterContainer>
 
               {(counter < 1 || gameWon) && (
                 <FilmInfo>
@@ -217,13 +222,17 @@ const GameBoard = () => {
                   ) : null}
                 </FilmInfo>
               )}
-              <ReleaseHint releaseYear={film.release_date.substring(0, 4)} counter={counter} setCounter={setCounter} gameWon={gameWon} />
+              <ReleaseHint
+                releaseYear={film.release_date.substring(0, 4)}
+                counter={counter}
+                setCounter={setCounter}
+                gameWon={gameWon}
+              />
             </FilmContainer>
           </>
-        )
-        }
-      </ContentContainer >
-    </Container >
+        )}
+      </ContentContainer>
+    </Container>
   )
 }
 

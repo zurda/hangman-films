@@ -198,8 +198,7 @@ export const PosterOverlay = styled.div<PosterOverlayProps>`
 `
 
 export const HintButton = styled.button`
-  position: absolute;
-
+  margin-top: 10px;
   bottom: 0;
 
   padding: 8px;
@@ -207,6 +206,7 @@ export const HintButton = styled.button`
   background-color: ${(props) => props.theme.colors.dark};
   color: #fff;
   border: 0;
+  border-radius: 10px;
 
   width: 100%;
 
@@ -232,4 +232,9 @@ export const FilmInfo = styled.div`
     margin-left: 0px;
     margin-top: 16px;
   }
+`;
+
+export const PosterContainer = styled.div`
+  display:flex;
+  flex-direction:column;
 `;
