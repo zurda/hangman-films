@@ -41,7 +41,7 @@ const GameDataProvider: React.FC = ({ children }) => {
       if (
         gameData.alreadyPlayed 
         && gameData.difficultyLevel 
-        && gameData.darkTheme
+        && !gameData.darkTheme
       ) {
         return JSON.parse(storedData) as IGameData;
       }
@@ -50,7 +50,7 @@ const GameDataProvider: React.FC = ({ children }) => {
     return {
       alreadyPlayed: [],
       difficultyLevel: 'medium',
-      darkTheme: false,
+      darkTheme: true,
     };
   });
 
