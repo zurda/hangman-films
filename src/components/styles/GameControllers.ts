@@ -17,6 +17,11 @@ export const DropdownContainer = styled.div`
 
   select {
     color: ${(props) => props.theme.colors.text};
+    
+
+    &:focus {
+      border: 2px solid ${(props) => props.theme.colors.text};
+    }
   }
 
   @media (max-width: 420px) {
@@ -34,6 +39,7 @@ export const Select = styled.select`
   background-repeat: no-repeat;
   background-position-y: 50%;
   background-position-x: calc(100% - 8px);
+  border-radius: 8px;
 
   width: 100%;
   text-align: left;

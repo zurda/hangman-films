@@ -111,6 +111,10 @@ export const Button = styled.button`
     background-color: ${(props) => props.theme.colors.darker};
   }
 
+  &:focus {
+      border: 2px solid ${(props) => props.theme.colors.text};
+  }
+
   @media (max-width: 420px) {
     width: 100%;
     font-size: 16px;

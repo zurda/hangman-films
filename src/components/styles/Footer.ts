@@ -14,5 +14,9 @@ export const Description = styled.p`
   margin: 0;
   & a {
     color: inherit;
+
+    &:focus {
+      border: 2px solid ${(props) => props.theme.colors.text};
+    }
   }
 `
