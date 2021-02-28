@@ -52,5 +52,8 @@
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^4.1.0",
     "typescript": "^3.7.4"
+  },
+  "resolutions": {
+      "immer": "^8.0.1"
   }
 }
